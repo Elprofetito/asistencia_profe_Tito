@@ -19,63 +19,55 @@
   body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:15px;}
   .screen{display:none;min-height:100vh;}
   .screen.active{display:flex;flex-direction:column;}
-  .header{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;}
-  .header-logo{font-size:15px;font-weight:600;letter-spacing:-0.02em;color:var(--text);display:flex;align-items:center;gap:8px;}
-  .logo-dot{width:8px;height:8px;background:var(--accent);border-radius:50%;}
+  .header{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;}
+  .header-logo{font-size:15px;font-weight:600;letter-spacing:-0.02em;color:var(--text);display:flex;align-items:center;gap:10px;}
   .chip{font-size:12px;font-family:'DM Mono',monospace;background:var(--surface2);border:1px solid var(--border);padding:4px 10px;border-radius:20px;color:var(--text2);}
   .btn-ghost{font-size:13px;color:var(--text2);background:none;border:none;cursor:pointer;padding:6px 10px;border-radius:6px;transition:background .15s;}
   .btn-ghost:hover{background:var(--surface2);color:var(--text);}
-  .main{flex:1;padding:24px;max-width:920px;margin:0 auto;width:100%;}
+  .main{flex:1;padding:24px;max-width:960px;margin:0 auto;width:100%;}
   .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;margin-bottom:16px;}
   .card-title{font-size:13px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px;}
-  /* TABS grupos */
   .tabs{display:flex;gap:4px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:4px;margin-bottom:12px;}
   .tab-btn{flex:1;padding:8px 10px;border:none;background:none;border-radius:7px;font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;color:var(--text2);transition:all .15s;}
   .tab-btn.active{background:var(--surface);color:var(--text);font-weight:500;box-shadow:0 1px 3px rgba(0,0,0,.08);}
-  /* PARCIAL SELECTOR */
-  .parcial-bar{display:flex;align-items:center;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
+  .parcial-bar{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
   .parcial-label{font-size:13px;color:var(--text2);font-weight:500;}
-  .parcial-btn{padding:7px 16px;border-radius:20px;border:1.5px solid var(--border);font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;background:var(--surface2);color:var(--text2);font-weight:500;transition:all .15s;}
-  .parcial-btn:hover{border-color:var(--text2);}
-  .parcial-btn.sel-1{background:var(--p1-light);color:var(--p1);border-color:var(--p1);}
-  .parcial-btn.sel-2{background:var(--p2-light);color:var(--p2);border-color:var(--p2);}
-  .parcial-btn.sel-3{background:var(--p3-light);color:var(--p3);border-color:var(--p3);}
-  .parcial-badge{font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;font-family:'DM Mono',monospace;}
-  .pb-1{background:var(--p1-light);color:var(--p1);}
-  .pb-2{background:var(--p2-light);color:var(--p2);}
-  .pb-3{background:var(--p3-light);color:var(--p3);}
-  /* STATS */
+  .sec-tabs{display:flex;gap:4px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:4px;margin-bottom:20px;}
+  .sec-tab{flex:1;padding:9px 12px;border:none;background:none;border-radius:7px;font-size:14px;font-family:'DM Sans',sans-serif;cursor:pointer;color:var(--text2);transition:all .15s;font-weight:400;}
+  .sec-tab.active{background:var(--surface);color:var(--text);font-weight:500;box-shadow:0 1px 3px rgba(0,0,0,.08);}
   .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;}
   .stat-box{background:var(--surface2);border-radius:var(--radius);padding:14px 16px;}
   .stat-label{font-size:12px;color:var(--text3);margin-bottom:4px;}
   .stat-num{font-size:26px;font-weight:600;letter-spacing:-.03em;color:var(--text);font-family:'DM Mono',monospace;}
-  .stat-num.green{color:var(--p2);} .stat-num.red{color:var(--accent2);} .stat-num.warn{color:var(--warn);}
-  /* TABLE */
+  .stat-num.green{color:var(--p2);}.stat-num.red{color:var(--accent2);}.stat-num.warn{color:var(--warn);}
+  /* TABLA */
   .att-table{width:100%;border-collapse:collapse;}
-  .att-table th{font-size:12px;font-weight:500;color:var(--text3);text-align:left;padding:8px 10px;border-bottom:1px solid var(--border);}
-  .att-table td{padding:8px 10px;border-bottom:1px solid var(--border);font-size:13px;vertical-align:middle;}
+  .att-table th{font-size:12px;font-weight:500;color:var(--text3);text-align:left;padding:8px 8px;border-bottom:1px solid var(--border);}
+  .att-table td{padding:7px 8px;border-bottom:1px solid var(--border);font-size:13px;vertical-align:middle;}
   .att-table tr:last-child td{border-bottom:none;}
   .att-table tr:hover td{background:var(--surface2);}
   .student-name{font-weight:500;color:var(--text);font-size:13px;}
   .student-code{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);}
+  /* MÓDULOS — dos columnas de toggle por día */
+  .mod-wrap{display:flex;gap:12px;align-items:center;}
+  .mod-label{font-size:11px;color:var(--text3);font-weight:500;min-width:20px;text-align:center;}
+  .att-toggle{display:flex;gap:3px;}
+  .att-btn{padding:4px 8px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:'DM Sans',sans-serif;cursor:pointer;background:var(--surface2);color:var(--text2);transition:all .12s;font-weight:500;}
+  .att-btn:hover{border-color:var(--text2);}
+  .att-btn.sel-A{background:var(--p2-light);color:var(--p2);border-color:var(--p2);}
+  .att-btn.sel-F{background:var(--accent2-light);color:var(--accent2);border-color:var(--accent2);}
+  .att-btn.sel-R{background:var(--warn-light);color:var(--warn);border-color:var(--warn);}
+  .mod-divider{width:1px;height:24px;background:var(--border);}
   /* BADGES */
   .badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px;white-space:nowrap;}
   .badge-present{background:var(--p2-light);color:var(--p2);}
   .badge-absent{background:var(--accent2-light);color:var(--accent2);}
   .badge-late{background:var(--warn-light);color:var(--warn);}
   .badge-dot{width:5px;height:5px;border-radius:50%;background:currentColor;}
-  /* TOGGLE */
-  .att-toggle{display:flex;gap:3px;}
-  .att-btn{padding:4px 9px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:'DM Sans',sans-serif;cursor:pointer;background:var(--surface2);color:var(--text2);transition:all .12s;font-weight:500;}
-  .att-btn:hover{border-color:var(--text2);}
-  .att-btn.sel-P{background:var(--p2-light);color:var(--p2);border-color:var(--p2);}
-  .att-btn.sel-F{background:var(--accent2-light);color:var(--accent2);border-color:var(--accent2);}
-  .att-btn.sel-T{background:var(--warn-light);color:var(--warn);border-color:var(--warn);}
   /* DATE BAR */
   .date-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px;}
   .date-label{font-size:15px;font-weight:500;color:var(--text);}
   .alert-bar{background:var(--warn-light);border:1px solid #E8D095;border-radius:var(--radius);padding:12px 16px;margin-bottom:16px;font-size:13px;color:var(--warn);display:flex;align-items:flex-start;gap:8px;}
-  /* BUTTONS */
   .btn-primary{background:var(--accent);color:white;border:none;border-radius:var(--radius);padding:10px 18px;font-size:14px;font-family:'DM Sans',sans-serif;font-weight:500;cursor:pointer;transition:opacity .15s;}
   .btn-primary:hover{opacity:.88;}
   .btn-secondary{background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:var(--radius);padding:9px 14px;font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;transition:background .15s;}
@@ -105,39 +97,29 @@
   .parent-stat-num{font-size:22px;font-weight:600;font-family:'DM Mono',monospace;}
   .parent-stat-label{font-size:11px;opacity:.7;margin-top:2px;}
   .parent-main{flex:1;padding:20px;max-width:640px;margin:0 auto;width:100%;}
-  /* PARCIAL SECTION in parent */
-  .parcial-section{margin-bottom:6px;}
-  .parcial-section-title{font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;padding:10px 0 6px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border);margin-bottom:2px;}
   .hist-item{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--border);}
   .hist-item:last-child{border-bottom:none;}
   .hist-date{font-size:14px;font-weight:500;color:var(--text);}
-  /* PROGRESS */
+  .hist-mods{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end;}
   .progress-wrap{background:var(--border);border-radius:99px;height:6px;overflow:hidden;margin-top:6px;}
   .progress-fill{height:100%;border-radius:99px;background:var(--p2);transition:width .3s;}
   .progress-fill.red{background:var(--accent2);}
-  /* WA */
   .wa-btn{display:flex;align-items:center;gap:8px;background:#25D366;color:white;border:none;border-radius:var(--radius);padding:10px 16px;font-size:14px;font-family:'DM Sans',sans-serif;font-weight:500;cursor:pointer;transition:opacity .15s;text-decoration:none;width:fit-content;}
   .wa-btn:hover{opacity:.88;}
-  /* TOAST */
   #toast{position:fixed;bottom:24px;right:24px;background:var(--text);color:white;padding:12px 18px;border-radius:var(--radius);font-size:14px;opacity:0;pointer-events:none;transition:opacity .3s;z-index:100;max-width:300px;}
   #toast.show{opacity:1;}
   input[type="date"]{padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:'DM Sans',sans-serif;background:var(--surface2);color:var(--text);outline:none;cursor:pointer;}
   input[type="date"]:focus{border-color:var(--accent);}
-  .group-label{display:inline-block;font-size:11px;font-family:'DM Mono',monospace;background:var(--accent-light);color:var(--accent);padding:2px 8px;border-radius:4px;margin-bottom:4px;}
-  /* PARCIAL TABS in parent selector */
+  .group-label{display:inline-block;font-size:11px;font-family:'DM Mono',monospace;background:rgba(255,255,255,.2);color:white;padding:2px 8px;border-radius:4px;margin-bottom:4px;}
   .p-tabs{display:flex;gap:6px;margin-bottom:16px;}
   .p-tab{flex:1;padding:8px;border-radius:var(--radius);border:1.5px solid var(--border);font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;background:var(--surface2);color:var(--text2);font-weight:500;text-align:center;transition:all .15s;}
   .p-tab.active-1{background:var(--p1-light);color:var(--p1);border-color:var(--p1);}
   .p-tab.active-2{background:var(--p2-light);color:var(--p2);border-color:var(--p2);}
   .p-tab.active-3{background:var(--p3-light);color:var(--p3);border-color:var(--p3);}
-  /* SECTION TABS (Asistencia / Comentarios) */
-  .sec-tabs{display:flex;gap:4px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:4px;margin-bottom:20px;}
-  .sec-tab{flex:1;padding:9px 12px;border:none;background:none;border-radius:7px;font-size:14px;font-family:'DM Sans',sans-serif;cursor:pointer;color:var(--text2);transition:all .15s;font-weight:400;}
-  .sec-tab.active{background:var(--surface);color:var(--text);font-weight:500;box-shadow:0 1px 3px rgba(0,0,0,.08);}
   /* COMENTARIOS */
   .cmt-form{display:flex;flex-direction:column;gap:12px;}
   .cmt-row{display:flex;gap:10px;flex-wrap:wrap;}
-  .cmt-select{flex:1;min-width:180px;padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:'DM Sans',sans-serif;background:var(--surface2);color:var(--text);outline:none;}
+  .cmt-select{flex:1;min-width:160px;padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:'DM Sans',sans-serif;background:var(--surface2);color:var(--text);outline:none;}
   .cmt-select:focus{border-color:var(--accent);}
   .cmt-textarea{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:'DM Sans',sans-serif;background:var(--surface2);color:var(--text);outline:none;resize:vertical;min-height:80px;line-height:1.5;}
   .cmt-textarea:focus{border-color:var(--accent);background:var(--surface);}
@@ -150,21 +132,19 @@
   .cmt-text{font-size:13px;color:var(--text2);line-height:1.5;}
   .cmt-delete{margin-left:auto;background:none;border:none;cursor:pointer;font-size:16px;color:var(--text3);padding:0 4px;transition:color .15s;}
   .cmt-delete:hover{color:var(--accent2);}
-  /* PARENT comment card */
   .pcmt-entry{padding:12px;background:var(--surface2);border-radius:var(--radius);margin-bottom:8px;}
-  .pcmt-entry:last-child{margin-bottom:0;}
-  .pcmt-week{font-size:11px;font-family:'DM Mono',monospace;color:var(--text3);margin-bottom:4px;}
+  .pcmt-week{font-size:11px;font-family:'DM Mono',monospace;color:var(--text3);margin-bottom:4px;display:flex;gap:8px;align-items:center;}
   .pcmt-text{font-size:14px;color:var(--text);line-height:1.5;}
 </style>
 </head>
 <body>
 
-<!-- ═══ PARENT LOGIN ═══ -->
+<!-- LOGIN PADRES -->
 <div id="screen-login" class="screen active">
   <div class="login-wrap">
     <div class="login-box">
-      <div style="width:40px;height:40px;margin-bottom:18px;">
-        <img src="https://raw.githubusercontent.com/Elprofetito/asistencia_profe_Tito/main/Logo_halconesCEB.png" alt="CEB 8/2" style="width:40px;height:40px;object-fit:contain;">
+      <div style="width:48px;height:48px;margin-bottom:18px;">
+        <img src="https://raw.githubusercontent.com/Elprofetito/asistencia_profe_Tito/main/Logo_halconesCEB.png" alt="CEB 8/2" style="width:48px;height:48px;object-fit:contain;">
       </div>
       <h1>Portal de Padres</h1>
       <p>Centro de Estudios de Bachillerato 8/2</p>
@@ -180,12 +160,12 @@
   </div>
 </div>
 
-<!-- ═══ TEACHER LOGIN ═══ -->
+<!-- LOGIN PROFESOR -->
 <div id="screen-teacher-login" class="screen">
   <div class="login-wrap">
     <div class="login-box">
-      <div style="width:40px;height:40px;margin-bottom:18px;">
-        <img src="https://raw.githubusercontent.com/Elprofetito/asistencia_profe_Tito/main/Logo_halconesCEB.png" alt="CEB 8/2" style="width:40px;height:40px;object-fit:contain;">
+      <div style="width:48px;height:48px;margin-bottom:18px;">
+        <img src="https://raw.githubusercontent.com/Elprofetito/asistencia_profe_Tito/main/Logo_halconesCEB.png" alt="CEB 8/2" style="width:48px;height:48px;object-fit:contain;">
       </div>
       <h1>Acceso Profesor</h1>
       <p>CEB 8/2 — Halcones</p>
@@ -205,10 +185,13 @@
   </div>
 </div>
 
-<!-- ═══ TEACHER VIEW ═══ -->
+<!-- VISTA PROFESOR -->
 <div id="screen-teacher" class="screen">
   <div class="header">
-    <div class="header-logo" style="gap:10px;"><img src="https://raw.githubusercontent.com/Elprofetito/asistencia_profe_Tito/main/Logo_halconesCEB.png" alt="CEB 8/2" style="height:32px;width:32px;object-fit:contain;border-radius:4px;"> CEB 8/2 · Asistencia</div>
+    <div class="header-logo">
+      <img src="https://raw.githubusercontent.com/Elprofetito/asistencia_profe_Tito/main/Logo_halconesCEB.png" alt="CEB 8/2" style="height:34px;width:34px;object-fit:contain;">
+      CEB 8/2 · Asistencia
+    </div>
     <div style="display:flex;align-items:center;gap:10px;">
       <span class="chip" id="teacher-name-chip">Profesor</span>
       <button class="btn-ghost" onclick="show('screen-login')">Salir →</button>
@@ -216,69 +199,73 @@
   </div>
   <div class="main">
 
-    <!-- Tabs de grupo -->
     <div class="tabs">
       <button class="tab-btn active" onclick="switchGroup(0,this)">PFyH 205</button>
       <button class="tab-btn" onclick="switchGroup(1,this)">PFyH 206</button>
       <button class="tab-btn" onclick="switchGroup(2,this)">CsSoc 206</button>
     </div>
 
-    <!-- Pestañas de sección -->
     <div class="sec-tabs">
       <button class="sec-tab active" id="sec-att" onclick="switchSection('att')">📋 Asistencia</button>
       <button class="sec-tab" id="sec-cmt" onclick="switchSection('cmt')">💬 Comentarios</button>
     </div>
 
-    <!-- ── SECCIÓN ASISTENCIA ── -->
+    <!-- SECCIÓN ASISTENCIA -->
     <div id="section-att">
-    <div class="parcial-bar">
-      <span class="parcial-label">Parcial:</span>
-      <select id="parcial-select" onchange="switchParcial(parseInt(this.value))" style="padding:8px 16px;border-radius:20px;border:1.5px solid var(--accent);font-size:13px;font-family:'DM Sans',sans-serif;font-weight:500;background:var(--accent-light);color:var(--accent);outline:none;cursor:pointer;">
-        <option value="1">1° Parcial</option>
-        <option value="2">2° Parcial</option>
-        <option value="3" selected>3° Parcial</option>
-      </select>
-    </div>
+      <div class="parcial-bar">
+        <span class="parcial-label">Parcial:</span>
+        <select id="parcial-select" onchange="switchParcial(parseInt(this.value))" style="padding:8px 16px;border-radius:20px;border:1.5px solid var(--accent);font-size:13px;font-family:'DM Sans',sans-serif;font-weight:500;background:var(--accent-light);color:var(--accent);outline:none;cursor:pointer;">
+          <option value="1">1° Parcial</option>
+          <option value="2">2° Parcial</option>
+          <option value="3" selected>3° Parcial</option>
+        </select>
+      </div>
 
-    <!-- Stats -->
-    <div class="stats-row">
-      <div class="stat-box"><div class="stat-label">Total alumnos</div><div class="stat-num" id="stat-total">0</div></div>
-      <div class="stat-box"><div class="stat-label">Presentes hoy</div><div class="stat-num green" id="stat-present">0</div></div>
-      <div class="stat-box"><div class="stat-label">Faltas hoy</div><div class="stat-num red" id="stat-absent">0</div></div>
-    </div>
+      <div class="stats-row">
+        <div class="stat-box"><div class="stat-label">Total alumnos</div><div class="stat-num" id="stat-total">0</div></div>
+        <div class="stat-box"><div class="stat-label">Con asistencia hoy</div><div class="stat-num green" id="stat-present">0</div></div>
+        <div class="stat-box"><div class="stat-label">Con falta hoy</div><div class="stat-num red" id="stat-absent">0</div></div>
+      </div>
 
-    <!-- Registro -->
-    <div class="card">
-      <div class="date-bar">
-        <div>
-          <div class="date-label" id="date-display">Hoy</div>
-          <div style="font-size:12px;color:var(--text3);margin-top:2px;">P = Presente · F = Falta · T = Tardanza</div>
+      <div class="card">
+        <div class="date-bar">
+          <div>
+            <div class="date-label" id="date-display">Hoy</div>
+            <div style="font-size:12px;color:var(--text3);margin-top:2px;">A = Asistencia · R = Retardo · F = Falta &nbsp;|&nbsp; M1 = Módulo 1 · M2 = Módulo 2</div>
+          </div>
+          <input type="date" id="date-picker" onchange="onDateChange()" />
         </div>
-        <input type="date" id="date-picker" onchange="onDateChange()" />
+        <div id="alert-bar" class="alert-bar" style="display:none;">⚠ <span id="alert-msg"></span></div>
+        <table class="att-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Alumno/a</th>
+              <th>Código</th>
+              <th style="text-align:center;">M1</th>
+              <th style="text-align:center;">M2</th>
+              <th>Faltas parcial</th>
+            </tr>
+          </thead>
+          <tbody id="student-table-body"></tbody>
+        </table>
+        <div class="actions-row">
+          <button class="btn-primary" onclick="saveAttendance()">✓ Guardar registro</button>
+          <button class="btn-secondary" onclick="markAll('A')">Todos presentes</button>
+          <button class="btn-secondary" onclick="exportCSV()">Exportar CSV</button>
+        </div>
       </div>
-      <div id="alert-bar" class="alert-bar" style="display:none;">⚠ <span id="alert-msg"></span></div>
-      <table class="att-table">
-        <thead><tr><th>#</th><th>Alumno/a</th><th>Código</th><th>Asistencia</th><th>Faltas parcial</th></tr></thead>
-        <tbody id="student-table-body"></tbody>
-      </table>
-      <div class="actions-row">
-        <button class="btn-primary" onclick="saveAttendance()">✓ Guardar registro</button>
-        <button class="btn-secondary" onclick="markAll('P')">Todos presentes</button>
-        <button class="btn-secondary" onclick="exportCSV()">Exportar CSV</button>
-      </div>
-    </div>
 
-    <!-- Resumen del parcial -->
-    <div class="card">
-      <div class="card-title">Resumen — <span id="hist-group-label"></span> · <span id="hist-parcial-label"></span></div>
-      <table class="att-table">
-        <thead><tr><th>Alumno/a</th><th>Faltas en parcial</th><th>% Asistencia parcial</th></tr></thead>
-        <tbody id="summary-table-body"></tbody>
-      </table>
-    </div>
+      <div class="card">
+        <div class="card-title">Resumen — <span id="hist-group-label"></span> · <span id="hist-parcial-label"></span></div>
+        <table class="att-table">
+          <thead><tr><th>Alumno/a</th><th>Faltas (módulos)</th><th>% Asistencia</th></tr></thead>
+          <tbody id="summary-table-body"></tbody>
+        </table>
+      </div>
     </div><!-- /section-att -->
 
-    <!-- ── SECCIÓN COMENTARIOS ── -->
+    <!-- SECCIÓN COMENTARIOS -->
     <div id="section-cmt" style="display:none;">
       <div class="card">
         <div class="card-title">Nuevo comentario</div>
@@ -293,9 +280,7 @@
             <input type="week" id="cmt-week-sel" class="cmt-select" style="min-width:160px;" />
           </div>
           <textarea class="cmt-textarea" id="cmt-text-input" placeholder="Escribe tu comentario sobre el alumno/a esta semana…"></textarea>
-          <div>
-            <button class="btn-primary" onclick="saveComment()">Guardar comentario</button>
-          </div>
+          <div><button class="btn-primary" onclick="saveComment()">Guardar comentario</button></div>
         </div>
       </div>
       <div class="card">
@@ -303,10 +288,11 @@
         <div id="cmt-list"><div style="font-size:14px;color:var(--text3);padding:8px 0;">Aún no hay comentarios para este grupo.</div></div>
       </div>
     </div><!-- /section-cmt -->
-  </div><!-- /main -->
-</div><!-- /screen-teacher -->
 
-<!-- ═══ PARENT VIEW ═══ -->
+  </div>
+</div>
+
+<!-- VISTA PADRES -->
 <div id="screen-parent" class="screen">
   <div class="parent-header">
     <div style="display:flex;justify-content:space-between;align-items:flex-start;">
@@ -317,18 +303,17 @@
       </div>
       <img src="https://raw.githubusercontent.com/Elprofetito/asistencia_profe_Tito/main/Logo_halconesCEB.png" alt="CEB 8/2" style="height:48px;width:48px;object-fit:contain;opacity:.9;">
     </div>
-    <div style="display:flex;justify-content:flex-end;margin-top:6px;">
+    <div style="display:flex;justify-content:flex-end;margin-top:4px;">
       <button class="btn-ghost" style="color:rgba(255,255,255,.8);padding:4px 8px;" onclick="show('screen-login')">← Salir</button>
     </div>
     <div class="parent-stats">
       <div class="parent-stat"><div class="parent-stat-num" id="p-stat-present">0</div><div class="parent-stat-label">Asistencias</div></div>
       <div class="parent-stat"><div class="parent-stat-num" id="p-stat-absent">0</div><div class="parent-stat-label">Faltas</div></div>
-      <div class="parent-stat"><div class="parent-stat-num" id="p-stat-late">0</div><div class="parent-stat-label">Tardanzas</div></div>
+      <div class="parent-stat"><div class="parent-stat-num" id="p-stat-retardo">0</div><div class="parent-stat-label">Retardos</div></div>
     </div>
   </div>
 
   <div class="parent-main">
-    <!-- Selector de parcial para padres -->
     <div class="card" style="margin-top:16px;">
       <div class="card-title">Selecciona el parcial</div>
       <div class="p-tabs">
@@ -336,7 +321,6 @@
         <div class="p-tab" id="ptab2" onclick="switchParentParcial(2)">2° Parcial</div>
         <div class="p-tab active-3" id="ptab3" onclick="switchParentParcial(3)">3° Parcial</div>
       </div>
-      <!-- Porcentaje del parcial seleccionado -->
       <div class="card-title" style="margin-bottom:8px;">Porcentaje de asistencia</div>
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
         <span id="p-pct-label" style="font-size:24px;font-weight:600;font-family:'DM Mono',monospace;">—</span>
@@ -346,14 +330,17 @@
       <div style="font-size:12px;color:var(--text3);margin-top:6px;">Mínimo requerido: 80% de asistencia</div>
     </div>
 
-    <!-- Historial por parcial -->
     <div class="card">
       <div class="card-title" id="parent-hist-title">Historial del parcial</div>
       <div id="parent-history-list"></div>
       <div id="parent-empty" style="font-size:14px;color:var(--text3);padding:8px 0;display:none;">Aún no hay registros en este parcial.</div>
     </div>
 
-    <!-- WhatsApp -->
+    <div class="card">
+      <div class="card-title">Comentarios del profesor</div>
+      <div id="parent-cmt-list"><div style="font-size:14px;color:var(--text3);padding:4px 0;">Sin comentarios aún.</div></div>
+    </div>
+
     <div class="card">
       <div class="card-title">Enviar reporte</div>
       <p style="font-size:13px;color:var(--text2);margin-bottom:14px;">Comparte el reporte por WhatsApp con un toque.</p>
@@ -361,12 +348,6 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Enviar por WhatsApp
       </a>
-    </div>
-
-    <!-- Comentarios del profesor -->
-    <div class="card">
-      <div class="card-title">Comentarios del profesor</div>
-      <div id="parent-cmt-list"><div style="font-size:14px;color:var(--text3);padding:4px 0;">Sin comentarios aún.</div></div>
     </div>
   </div>
 </div>
@@ -376,6 +357,7 @@
 <script>
 const TEACHER_PASS = "1234";
 const PARCIALES = {1:'1° Parcial', 2:'2° Parcial', 3:'3° Parcial'};
+const LOGO = "https://raw.githubusercontent.com/Elprofetito/asistencia_profe_Tito/main/Logo_halconesCEB.png";
 
 const defaultGroups = [
   {name:"PFyH 205",students:[
@@ -477,22 +459,21 @@ const defaultGroups = [
 ];
 
 // ── STATE ──────────────────────────────────────────────────────────────────
-let groups    = JSON.parse(localStorage.getItem('att_groups3')||'null') || defaultGroups;
-// attendance[parcial][date][groupIdx][code] = 'P'|'F'|'T'
-let attendance= JSON.parse(localStorage.getItem('att_records3')||'{}');
+let groups     = JSON.parse(localStorage.getItem('att_groups4')||'null') || defaultGroups;
+// attendance[parcial][date][groupIdx][code] = {m1:'A'|'R'|'F'|'', m2:'A'|'R'|'F'|''}
+let attendance = JSON.parse(localStorage.getItem('att_records4')||'{}');
+let comments   = JSON.parse(localStorage.getItem('att_comments4')||'{}');
 
 let currentGroup   = 0;
-let currentParcial = 3;   // arranca en 3er parcial
+let currentParcial = 3;
 let currentDate    = todayStr();
-// Para la vista de padres
 let parentStudentRef = null;
 let parentGroupRef   = -1;
 let parentParcial    = 3;
 
-function save() {
-  localStorage.setItem('att_groups3',   JSON.stringify(groups));
-  localStorage.setItem('att_records3',  JSON.stringify(attendance));
-}
+function save()     { localStorage.setItem('att_groups4', JSON.stringify(groups)); localStorage.setItem('att_records4', JSON.stringify(attendance)); }
+function saveCmts() { localStorage.setItem('att_comments4', JSON.stringify(comments)); }
+
 function todayStr() { return new Date().toISOString().split('T')[0]; }
 function fmtDate(d) {
   const [y,m,day]=d.split('-');
@@ -504,126 +485,20 @@ function show(id) {
   document.getElementById(id).classList.add('active');
 }
 
-// ── SECCIÓN (Asistencia / Comentarios) ─────────────────────────────────────
-function switchSection(sec) {
-  document.getElementById('section-att').style.display = sec==='att' ? '' : 'none';
-  document.getElementById('section-cmt').style.display = sec==='cmt' ? '' : 'none';
-  document.getElementById('sec-att').className = 'sec-tab' + (sec==='att'?' active':'');
-  document.getElementById('sec-cmt').className = 'sec-tab' + (sec==='cmt'?' active':'');
-  if(sec==='cmt') renderComments();
-}
-
-// ── COMENTARIOS ─────────────────────────────────────────────────────────────
-// comments[groupIdx][code] = [{parcial, week, text, ts}]
-let comments = JSON.parse(localStorage.getItem('att_comments')||'{}');
-
-function saveComments() { localStorage.setItem('att_comments', JSON.stringify(comments)); }
-
-function weekLabel(w) {
-  // w = "2025-W21" → "Sem. 21, 2025"
-  if(!w) return '';
-  const [y,wn] = w.split('-W');
-  return `Sem. ${wn} · ${y}`;
-}
-
-function populateCmtStudentSelect() {
-  const sel = document.getElementById('cmt-student-sel');
-  const g = groups[currentGroup];
-  sel.innerHTML = '<option value="">— Selecciona alumno/a —</option>' +
-    g.students.map(s=>`<option value="${s.code}">${s.name}</option>`).join('');
-}
-
-function saveComment() {
-  const parcial = parseInt(document.getElementById('cmt-parcial-sel').value);
-  const code    = document.getElementById('cmt-student-sel').value;
-  const week    = document.getElementById('cmt-week-sel').value;
-  const text    = document.getElementById('cmt-text-input').value.trim();
-  if(!code || !week || !text) { toast('Completa todos los campos ⚠'); return; }
-
-  const key = currentGroup;
-  if(!comments[key]) comments[key]={};
-  if(!comments[key][code]) comments[key][code]=[];
-  comments[key][code].push({parcial, week, text, ts: Date.now()});
-  saveComments();
-  document.getElementById('cmt-text-input').value='';
-  renderComments();
-  toast('Comentario guardado ✓');
-}
-
-function deleteComment(gi, code, ts) {
-  if(!comments[gi]||!comments[gi][code]) return;
-  comments[gi][code] = comments[gi][code].filter(c=>c.ts!==ts);
-  saveComments();
-  renderComments();
-  toast('Comentario eliminado');
-}
-
-function renderComments() {
-  const g = groups[currentGroup];
-  populateCmtStudentSelect();
-  document.getElementById('cmt-group-label').textContent = g.name;
-  const gc = comments[currentGroup]||{};
-
-  // Recopilar todos los comentarios del grupo
-  let all = [];
-  g.students.forEach(s=>{
-    (gc[s.code]||[]).forEach(c=>all.push({...c, name:s.name, code:s.code}));
-  });
-  all.sort((a,b)=>b.ts-a.ts);
-
-  const el = document.getElementById('cmt-list');
-  if(!all.length){
-    el.innerHTML='<div style="font-size:14px;color:var(--text3);padding:8px 0;">Aún no hay comentarios para este grupo.</div>';
-    return;
-  }
-  const pColors = {1:'var(--p1)',2:'var(--p2)',3:'var(--p3)'};
-  const pBg     = {1:'var(--p1-light)',2:'var(--p2-light)',3:'var(--p3-light)'};
-  el.innerHTML = all.map(c=>`
-    <div class="cmt-entry">
-      <div class="cmt-meta">
-        <span class="cmt-student">${c.name}</span>
-        <span class="cmt-week">${weekLabel(c.week)}</span>
-        <span class="cmt-parcial-tag" style="background:${pBg[c.parcial]};color:${pColors[c.parcial]};">${PARCIALES[c.parcial]}</span>
-        <button class="cmt-delete" onclick="deleteComment(${currentGroup},'${c.code}',${c.ts})" title="Eliminar">✕</button>
-      </div>
-      <div class="cmt-text">${c.text.replace(/\n/g,'<br>')}</div>
-    </div>`).join('');
-}
-
-function renderParentComments(gi, code) {
-  const gc = comments[gi]||{};
-  const list = (gc[code]||[]).slice().sort((a,b)=>b.ts-a.ts);
-  const el = document.getElementById('parent-cmt-list');
-  if(!list.length){
-    el.innerHTML='<div style="font-size:14px;color:var(--text3);padding:4px 0;">Sin comentarios aún.</div>';
-    return;
-  }
-  const pColors={1:'var(--p1)',2:'var(--p2)',3:'var(--p3)'};
-  const pBg={1:'var(--p1-light)',2:'var(--p2-light)',3:'var(--p3-light)'};
-  el.innerHTML = list.map(c=>`
-    <div class="pcmt-entry">
-      <div class="pcmt-week" style="display:flex;gap:8px;align-items:center;">
-        <span>${weekLabel(c.week)}</span>
-        <span style="font-size:11px;padding:2px 8px;border-radius:20px;background:${pBg[c.parcial]};color:${pColors[c.parcial]};">${PARCIALES[c.parcial]}</span>
-      </div>
-      <div class="pcmt-text">${c.text.replace(/\n/g,'<br>')}</div>
-    </div>`).join('');
-}
-
 // ── AUTH ───────────────────────────────────────────────────────────────────
 function teacherLogin() {
   const pass=document.getElementById('teacher-pass').value;
   const name=document.getElementById('teacher-user').value.trim();
   if(pass===TEACHER_PASS&&name){
     document.getElementById('teacher-name-chip').textContent=name;
-    show('screen-teacher');
     document.getElementById('date-picker').value=currentDate;
+    show('screen-teacher');
     renderTeacher();
   } else { document.getElementById('teacher-login-error').style.display='block'; }
 }
 function parentLogin() {
   const code=document.getElementById('parent-code-input').value.trim().toLowerCase();
-  let found=null, gi=-1;
+  let found=null,gi=-1;
   groups.forEach((g,i)=>g.students.forEach(s=>{if(s.code.toLowerCase()===code){found=s;gi=i;}}));
   if(!found){document.getElementById('login-error').style.display='block';return;}
   document.getElementById('login-error').style.display='none';
@@ -643,43 +518,56 @@ function switchParcial(p) {
   currentParcial=p;
   const sel=document.getElementById('parcial-select');
   sel.value=p;
-  const colors={1:['var(--p1-light)','var(--p1)','var(--p1)'],2:['var(--p2-light)','var(--p2)','var(--p2)'],3:['var(--accent-light)','var(--accent)','var(--accent)']};
-  sel.style.background=colors[p][0];
-  sel.style.color=colors[p][1];
-  sel.style.borderColor=colors[p][2];
+  const bg={1:'var(--p1-light)',2:'var(--p2-light)',3:'var(--accent-light)'};
+  const cl={1:'var(--p1)',2:'var(--p2)',3:'var(--accent)'};
+  sel.style.background=bg[p]; sel.style.color=cl[p]; sel.style.borderColor=cl[p];
   renderTeacher();
+}
+function switchSection(sec) {
+  document.getElementById('section-att').style.display=sec==='att'?'':'none';
+  document.getElementById('section-cmt').style.display=sec==='cmt'?'':'none';
+  document.getElementById('sec-att').className='sec-tab'+(sec==='att'?' active':'');
+  document.getElementById('sec-cmt').className='sec-tab'+(sec==='cmt'?' active':'');
+  if(sec==='cmt') renderComments();
 }
 function onDateChange() { currentDate=document.getElementById('date-picker').value; renderTeacher(); }
 
-function getDayRec() {
-  return ((attendance[currentParcial]||{})[currentDate]||{})[currentGroup]||{};
+function getRec(code,mod) {
+  return (((attendance[currentParcial]||{})[currentDate]||{})[currentGroup]||{})[code]?.[mod]||'';
 }
-function setRec(code,val) {
-  if(!attendance[currentParcial])                         attendance[currentParcial]={};
-  if(!attendance[currentParcial][currentDate])            attendance[currentParcial][currentDate]={};
-  if(!attendance[currentParcial][currentDate][currentGroup]) attendance[currentParcial][currentDate][currentGroup]={};
-  const cur=attendance[currentParcial][currentDate][currentGroup][code];
-  attendance[currentParcial][currentDate][currentGroup][code]=(cur===val)?'':val;
+function setRec(code,mod,val) {
+  if(!attendance[currentParcial])                               attendance[currentParcial]={};
+  if(!attendance[currentParcial][currentDate])                  attendance[currentParcial][currentDate]={};
+  if(!attendance[currentParcial][currentDate][currentGroup])    attendance[currentParcial][currentDate][currentGroup]={};
+  if(!attendance[currentParcial][currentDate][currentGroup][code]) attendance[currentParcial][currentDate][currentGroup][code]={m1:'',m2:''};
+  const cur=attendance[currentParcial][currentDate][currentGroup][code][mod];
+  attendance[currentParcial][currentDate][currentGroup][code][mod]=(cur===val)?'':val;
   save(); renderTeacher();
 }
 function markAll(val) {
-  if(!attendance[currentParcial])                         attendance[currentParcial]={};
-  if(!attendance[currentParcial][currentDate])            attendance[currentParcial][currentDate]={};
-  if(!attendance[currentParcial][currentDate][currentGroup]) attendance[currentParcial][currentDate][currentGroup]={};
-  groups[currentGroup].students.forEach(s=>{attendance[currentParcial][currentDate][currentGroup][s.code]=val;});
-  save(); renderTeacher(); toast('Todos marcados como presentes ✓');
+  if(!attendance[currentParcial])                               attendance[currentParcial]={};
+  if(!attendance[currentParcial][currentDate])                  attendance[currentParcial][currentDate]={};
+  if(!attendance[currentParcial][currentDate][currentGroup])    attendance[currentParcial][currentDate][currentGroup]={};
+  groups[currentGroup].students.forEach(s=>{
+    attendance[currentParcial][currentDate][currentGroup][s.code]={m1:val,m2:val};
+  });
+  save(); renderTeacher(); toast('Todos marcados como asistencia ✓');
 }
 function saveAttendance() { save(); toast('Registro guardado ✓'); }
 
-function getFaltasParcial(p, gi, code) {
+function getFaltasMods(p,gi,code) {
+  // Cuenta módulos con F
   let c=0;
   Object.keys(attendance[p]||{}).forEach(date=>{
-    if(((attendance[p][date]||{})[gi]||{})[code]==='F') c++;
+    const r=((attendance[p][date]||{})[gi]||{})[code]||{};
+    if(r.m1==='F') c++;
+    if(r.m2==='F') c++;
   });
   return c;
 }
-function countDaysParcial(p, gi) {
-  return Object.keys(attendance[p]||{}).filter(d=>(attendance[p][d]||{})[gi]).length;
+function getTotalMods(p,gi) {
+  // Total de módulos registrados (días × 2)
+  return Object.keys(attendance[p]||{}).filter(d=>(attendance[p][d]||{})[gi]).length * 2;
 }
 
 function renderTeacher() {
@@ -688,38 +576,43 @@ function renderTeacher() {
   document.getElementById('hist-parcial-label').textContent=PARCIALES[currentParcial];
   document.getElementById('date-display').textContent=fmtDate(currentDate)+(currentDate===todayStr()?' (hoy)':'');
 
-  const dayRec=getDayRec();
+  // Stats del día
   let present=0,absent=0;
-  g.students.forEach(s=>{const v=dayRec[s.code]||'';if(v==='P'||v==='T')present++;else if(v==='F')absent++;});
+  g.students.forEach(s=>{
+    const r=((attendance[currentParcial]||{})[currentDate]||{})[currentGroup]?.[s.code]||{};
+    if(r.m1==='A'||r.m2==='A') present++;
+    if(r.m1==='F'||r.m2==='F') absent++;
+  });
   document.getElementById('stat-total').textContent=g.students.length;
   document.getElementById('stat-present').textContent=present;
   document.getElementById('stat-absent').textContent=absent;
 
-  const total=countDaysParcial(currentParcial,currentGroup);
-  const alertS=g.students.filter(s=>total>0&&getFaltasParcial(currentParcial,currentGroup,s.code)/total>=0.15);
+  // Alerta 15%
+  const totalMods=getTotalMods(currentParcial,currentGroup);
+  const alertS=g.students.filter(s=>totalMods>0&&getFaltasMods(currentParcial,currentGroup,s.code)/totalMods>=0.15);
   const bar=document.getElementById('alert-bar');
-  if(alertS.length){bar.style.display='flex';document.getElementById('alert-msg').textContent=`${alertS.length} alumno(s) con más del 15% de faltas en este parcial: ${alertS.map(s=>s.name.split(' ')[0]).join(', ')}`;}
+  if(alertS.length){bar.style.display='flex';document.getElementById('alert-msg').textContent=`${alertS.length} alumno(s) con más del 15% de faltas: ${alertS.map(s=>s.name.split(' ')[0]).join(', ')}`;}
   else bar.style.display='none';
 
+  // Tabla principal
   document.getElementById('student-table-body').innerHTML=g.students.map((s,i)=>{
-    const val=dayRec[s.code]||'';
-    const fa=getFaltasParcial(currentParcial,currentGroup,s.code);
+    const r=((attendance[currentParcial]||{})[currentDate]||{})[currentGroup]?.[s.code]||{m1:'',m2:''};
+    const fa=getFaltasMods(currentParcial,currentGroup,s.code);
+    const toggle=(mod,val)=>`<button class="att-btn ${r[mod]===val?'sel-'+val:''}" onclick="setRec('${s.code}','${mod}','${val}')">${val}</button>`;
     return `<tr>
       <td style="color:var(--text3);font-size:12px;">${i+1}</td>
       <td><div class="student-name">${s.name}</div></td>
       <td><div class="student-code">${s.code}</div></td>
-      <td><div class="att-toggle">
-        <button class="att-btn ${val==='P'?'sel-P':''}" onclick="setRec('${s.code}','P')">P</button>
-        <button class="att-btn ${val==='F'?'sel-F':''}" onclick="setRec('${s.code}','F')">F</button>
-        <button class="att-btn ${val==='T'?'sel-T':''}" onclick="setRec('${s.code}','T')">T</button>
-      </div></td>
-      <td><span style="font-family:'DM Mono',monospace;font-size:13px;${fa>0?'color:var(--accent2);font-weight:500;':''}">${fa}</span></td>
+      <td><div class="att-toggle">${toggle('m1','A')}${toggle('m1','R')}${toggle('m1','F')}</div></td>
+      <td><div class="att-toggle">${toggle('m2','A')}${toggle('m2','R')}${toggle('m2','F')}</div></td>
+      <td><span style="font-family:'DM Mono',monospace;font-size:13px;${fa>0?'color:var(--accent2);font-weight:500;':''}">${fa} mód.</span></td>
     </tr>`;
   }).join('');
 
+  // Resumen
   document.getElementById('summary-table-body').innerHTML=g.students.map(s=>{
-    const fa=getFaltasParcial(currentParcial,currentGroup,s.code);
-    const pct=total>0?Math.round(((total-fa)/total)*100):100;
+    const fa=getFaltasMods(currentParcial,currentGroup,s.code);
+    const pct=totalMods>0?Math.round(((totalMods-fa)/totalMods)*100):100;
     const color=pct<80?'var(--accent2)':pct<90?'var(--warn)':'var(--p2)';
     return `<tr>
       <td><div class="student-name">${s.name}</div></td>
@@ -732,53 +625,48 @@ function renderTeacher() {
   }).join('');
 }
 
-// ── PARENT VIEW ─────────────────────────────────────────────────────────────
+// ── PARENT ─────────────────────────────────────────────────────────────────
 function switchParentParcial(p) {
   parentParcial=p;
   [1,2,3].forEach(i=>{
-    const t=document.getElementById('ptab'+i);
-    t.className='p-tab'+(i===p?' active-'+p:'');
+    document.getElementById('ptab'+i).className='p-tab'+(i===p?' active-'+p:'');
   });
   renderParentParcial();
 }
-
 function showParentView() {
-  const s=parentStudentRef, gi=parentGroupRef;
+  const s=parentStudentRef,gi=parentGroupRef;
   document.getElementById('parent-group-label').textContent=groups[gi].name;
   document.getElementById('parent-student-name').textContent=s.name;
-  // set tabs
-  switchParentParcial(parentParcial);
-  // total stats across all parcials
-  let totP=0,totF=0,totT=0;
+  // Totales globales (todos los parciales)
+  let totA=0,totF=0,totR=0;
   [1,2,3].forEach(p=>{
     Object.keys(attendance[p]||{}).forEach(date=>{
-      const v=((attendance[p][date]||{})[gi]||{})[s.code]||'';
-      if(v==='P')totP++;else if(v==='F')totF++;else if(v==='T'){totP++;totT++;}
+      const r=((attendance[p][date]||{})[gi]||{})[s.code]||{};
+      ['m1','m2'].forEach(m=>{
+        if(r[m]==='A') totA++;
+        else if(r[m]==='F') totF++;
+        else if(r[m]==='R') totR++;
+      });
     });
   });
-  document.getElementById('p-stat-present').textContent=totP;
+  document.getElementById('p-stat-present').textContent=totA;
   document.getElementById('p-stat-absent').textContent=totF;
-  document.getElementById('p-stat-late').textContent=totT;
+  document.getElementById('p-stat-retardo').textContent=totR;
+  renderParentComments(gi,s.code);
   show('screen-parent');
-  renderParentComments(gi, s.code);
-  renderParentParcial();
+  switchParentParcial(parentParcial);
 }
-
 function renderParentParcial() {
-  const s=parentStudentRef, gi=parentGroupRef, p=parentParcial;
+  const s=parentStudentRef,gi=parentGroupRef,p=parentParcial;
   document.getElementById('parent-hist-title').textContent=`Historial — ${PARCIALES[p]}`;
-
   const records=[];
   Object.keys(attendance[p]||{}).sort().reverse().forEach(date=>{
-    const v=((attendance[p][date]||{})[gi]||{})[s.code]||'';
-    if(v) records.push({date,val:v});
+    const r=((attendance[p][date]||{})[gi]||{})[s.code];
+    if(r&&(r.m1||r.m2)) records.push({date,m1:r.m1||'',m2:r.m2||''});
   });
-
-  const total=countDaysParcial(p,gi);
-  const faltas=records.filter(r=>r.val==='F').length;
-  const tardanzas=records.filter(r=>r.val==='T').length;
-  const presentes=records.filter(r=>r.val==='P').length+tardanzas;
-  const pct=total>0?Math.round((presentes/total)*100):100;
+  const totalMods=getTotalMods(p,gi);
+  const fa=getFaltasMods(p,gi,s.code);
+  const pct=totalMods>0?Math.round(((totalMods-fa)/totalMods)*100):100;
 
   document.getElementById('p-pct-label').textContent=pct+'%';
   const bar=document.getElementById('p-progress-bar');
@@ -790,47 +678,121 @@ function renderParentParcial() {
 
   const list=document.getElementById('parent-history-list');
   const empty=document.getElementById('parent-empty');
-  if(!records.length){list.innerHTML='';empty.style.display='block';}
-  else{
-    empty.style.display='none';
-    list.innerHTML=records.map(r=>{
-      const badge=r.val==='P'?'<span class="badge badge-present"><span class="badge-dot"></span>Presente</span>'
-        :r.val==='F'?'<span class="badge badge-absent"><span class="badge-dot"></span>Falta</span>'
-        :'<span class="badge badge-late"><span class="badge-dot"></span>Tardanza</span>';
-      return `<div class="hist-item"><div class="hist-date">${fmtDate(r.date)}</div>${badge}</div>`;
-    }).join('');
+  if(!records.length){list.innerHTML='';empty.style.display='block';return;}
+  empty.style.display='none';
+
+  function modBadge(v){
+    if(!v) return '<span class="badge" style="background:var(--surface2);color:var(--text3);">—</span>';
+    if(v==='A') return '<span class="badge badge-present"><span class="badge-dot"></span>Asistencia</span>';
+    if(v==='F') return '<span class="badge badge-absent"><span class="badge-dot"></span>Falta</span>';
+    if(v==='R') return '<span class="badge badge-late"><span class="badge-dot"></span>Retardo</span>';
   }
+  list.innerHTML=records.map(r=>`
+    <div class="hist-item">
+      <div class="hist-date">${fmtDate(r.date)}</div>
+      <div class="hist-mods">
+        <span style="font-size:11px;color:var(--text3);margin-right:2px;">M1</span>${modBadge(r.m1)}
+        <span style="font-size:11px;color:var(--text3);margin-right:2px;">M2</span>${modBadge(r.m2)}
+      </div>
+    </div>`).join('');
 
   // WhatsApp
-  const totF2=[1,2,3].reduce((a,pp)=>{
-    return a+Object.keys(attendance[pp]||{}).filter(d=>((attendance[pp][d]||{})[gi]||{})[s.code]==='F').length;
-  },0);
+  const totFp=getFaltasMods(p,gi,s.code);
   const msg=encodeURIComponent(
     `📋 *Reporte de Asistencia — ${PARCIALES[p]}*\n\n`+
-    `Alumno/a: *${s.name}*\n`+
-    `Grupo: ${groups[gi].name} · CEB 8/2\n\n`+
-    `✅ Asistencias en parcial: ${presentes}\n❌ Faltas en parcial: ${faltas}\n⏰ Tardanzas: ${tardanzas}\n📊 Porcentaje: ${pct}%\n`+
-    `\n_Emitido desde el Portal de Padres · ${fmtDate(todayStr())}_`
+    `Alumno/a: *${s.name}*\nGrupo: ${groups[gi].name} · CEB 8/2\n\n`+
+    `📊 Porcentaje: ${pct}%\n❌ Módulos con falta: ${totFp}\n\n`+
+    `_Portal de Padres CEB 8/2 · ${fmtDate(todayStr())}_`
   );
   document.getElementById('wa-link').href=`https://wa.me/?text=${msg}`;
 }
 
+// ── COMENTARIOS ─────────────────────────────────────────────────────────────
+function weekLabel(w){
+  if(!w) return '';
+  const [y,wn]=w.split('-W');
+  return `Sem. ${wn} · ${y}`;
+}
+function populateCmtStudentSelect(){
+  const sel=document.getElementById('cmt-student-sel');
+  sel.innerHTML='<option value="">— Selecciona alumno/a —</option>'+
+    groups[currentGroup].students.map(s=>`<option value="${s.code}">${s.name}</option>`).join('');
+}
+function saveComment(){
+  const parcial=parseInt(document.getElementById('cmt-parcial-sel').value);
+  const code=document.getElementById('cmt-student-sel').value;
+  const week=document.getElementById('cmt-week-sel').value;
+  const text=document.getElementById('cmt-text-input').value.trim();
+  if(!code||!week||!text){toast('Completa todos los campos ⚠');return;}
+  if(!comments[currentGroup]) comments[currentGroup]={};
+  if(!comments[currentGroup][code]) comments[currentGroup][code]=[];
+  comments[currentGroup][code].push({parcial,week,text,ts:Date.now()});
+  saveCmts();
+  document.getElementById('cmt-text-input').value='';
+  renderComments();
+  toast('Comentario guardado ✓');
+}
+function deleteComment(gi,code,ts){
+  if(!comments[gi]||!comments[gi][code]) return;
+  comments[gi][code]=comments[gi][code].filter(c=>c.ts!==ts);
+  saveCmts(); renderComments(); toast('Comentario eliminado');
+}
+function renderComments(){
+  const g=groups[currentGroup];
+  populateCmtStudentSelect();
+  document.getElementById('cmt-group-label').textContent=g.name;
+  const gc=comments[currentGroup]||{};
+  let all=[];
+  g.students.forEach(s=>(gc[s.code]||[]).forEach(c=>all.push({...c,name:s.name,code:s.code})));
+  all.sort((a,b)=>b.ts-a.ts);
+  const el=document.getElementById('cmt-list');
+  if(!all.length){el.innerHTML='<div style="font-size:14px;color:var(--text3);padding:8px 0;">Aún no hay comentarios para este grupo.</div>';return;}
+  const pBg={1:'var(--p1-light)',2:'var(--p2-light)',3:'var(--p3-light)'};
+  const pCl={1:'var(--p1)',2:'var(--p2)',3:'var(--p3)'};
+  el.innerHTML=all.map(c=>`<div class="cmt-entry">
+    <div class="cmt-meta">
+      <span class="cmt-student">${c.name}</span>
+      <span class="cmt-week">${weekLabel(c.week)}</span>
+      <span class="cmt-parcial-tag" style="background:${pBg[c.parcial]};color:${pCl[c.parcial]};">${PARCIALES[c.parcial]}</span>
+      <button class="cmt-delete" onclick="deleteComment(${currentGroup},'${c.code}',${c.ts})">✕</button>
+    </div>
+    <div class="cmt-text">${c.text.replace(/\n/g,'<br>')}</div>
+  </div>`).join('');
+}
+function renderParentComments(gi,code){
+  const list=(comments[gi]||{})[code]||[];
+  const sorted=list.slice().sort((a,b)=>b.ts-a.ts);
+  const el=document.getElementById('parent-cmt-list');
+  if(!sorted.length){el.innerHTML='<div style="font-size:14px;color:var(--text3);padding:4px 0;">Sin comentarios aún.</div>';return;}
+  const pBg={1:'var(--p1-light)',2:'var(--p2-light)',3:'var(--p3-light)'};
+  const pCl={1:'var(--p1)',2:'var(--p2)',3:'var(--p3)'};
+  el.innerHTML=sorted.map(c=>`<div class="pcmt-entry">
+    <div class="pcmt-week">
+      <span>${weekLabel(c.week)}</span>
+      <span style="font-size:11px;padding:2px 8px;border-radius:20px;background:${pBg[c.parcial]};color:${pCl[c.parcial]};">${PARCIALES[c.parcial]}</span>
+    </div>
+    <div class="pcmt-text">${c.text.replace(/\n/g,'<br>')}</div>
+  </div>`).join('');
+}
+
 // ── EXPORT CSV ──────────────────────────────────────────────────────────────
-function exportCSV() {
+function exportCSV(){
   const g=groups[currentGroup];
   const dates=Object.keys(attendance[currentParcial]||{}).filter(d=>(attendance[currentParcial][d]||{})[currentGroup]).sort();
-  let csv=`Parcial,Alumno,Código,${dates.map(fmtDate).join(',')},Faltas\n`;
+  let csv=`Parcial,Alumno,Código,${dates.flatMap(d=>[fmtDate(d)+' M1',fmtDate(d)+' M2']).join(',')},Faltas (módulos)\n`;
   g.students.forEach(s=>{
     const row=[PARCIALES[currentParcial],s.name,s.code];
-    dates.forEach(d=>row.push(((attendance[currentParcial][d]||{})[currentGroup]||{})[s.code]||''));
-    row.push(getFaltasParcial(currentParcial,currentGroup,s.code));
+    dates.forEach(d=>{
+      const r=((attendance[currentParcial][d]||{})[currentGroup]||{})[s.code]||{};
+      row.push(r.m1||'',r.m2||'');
+    });
+    row.push(getFaltasMods(currentParcial,currentGroup,s.code));
     csv+=row.map(v=>`"${v}"`).join(',')+'\n';
   });
   const blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'});
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');
-  a.href=url;
-  a.download=`asistencia_${g.name.replace(/\s/g,'_')}_P${currentParcial}_${currentDate}.csv`;
+  a.href=url; a.download=`asistencia_${g.name.replace(/\s/g,'_')}_P${currentParcial}_${currentDate}.csv`;
   a.click(); URL.revokeObjectURL(url);
   toast('CSV exportado ✓');
 }
@@ -842,8 +804,8 @@ function toast(msg){
   setTimeout(()=>t.classList.remove('show'),2800);
 }
 
+// ── INIT ────────────────────────────────────────────────────────────────────
 document.getElementById('date-picker').value=currentDate;
-// Semana actual en selector de comentarios
 (function(){
   const now=new Date(),y=now.getFullYear();
   const start=new Date(y,0,1);
