@@ -323,7 +323,46 @@
 
 <div id="toast"></div>
 
-<!-- FIREBASE SDK -->
+<!-- Script regular: expone funciones básicas inmediatamente al HTML -->
+<script>
+function show(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+// Estas funciones serán sobreescritas por el módulo de Firebase una vez que cargue
+// Mientras tanto muestran un indicador de carga
+function teacherLogin(){ _callWhenReady('teacherLogin'); }
+function parentLogin(){ _callWhenReady('parentLogin'); }
+function switchGroup(idx,el){ _callWhenReady('switchGroup',idx,el); }
+function switchParcial(p){ _callWhenReady('switchParcial',p); }
+function switchSection(s){ _callWhenReady('switchSection',s); }
+function onDateChange(){ _callWhenReady('onDateChange'); }
+function setRec(c,m,v){ _callWhenReady('setRec',c,m,v); }
+function markAll(v){ _callWhenReady('markAll',v); }
+function saveAttendance(){ _callWhenReady('saveAttendance'); }
+function switchParentParcial(p){ _callWhenReady('switchParentParcial',p); }
+function saveComment(){ _callWhenReady('saveComment'); }
+function deleteComment(gi,c,ts){ _callWhenReady('deleteComment',gi,c,ts); }
+function exportCSV(){ _callWhenReady('exportCSV'); }
+
+const _pendingCalls = [];
+let _fbReady = false;
+const _fbFunctions = {};
+
+function _callWhenReady(name, ...args){
+  if(_fbReady && _fbFunctions[name]){
+    _fbFunctions[name](...args);
+  } else {
+    _pendingCalls.push({name, args});
+  }
+}
+function _fbInit(fns){
+  Object.assign(_fbFunctions, fns);
+  _fbReady = true;
+  _pendingCalls.forEach(({name,args})=>{ if(_fbFunctions[name]) _fbFunctions[name](...args); });
+  _pendingCalls.length = 0;
+}
+</script>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore, doc, setDoc, getDoc, onSnapshot, collection, query, where, getDocs, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
@@ -466,6 +505,7 @@ function show(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
+window.show = show;
 function syncIndicator(){
   const el=document.getElementById('sync-indicator');
   el.classList.add('show');
@@ -832,6 +872,23 @@ document.getElementById('date-picker').value=currentDate;
   document.getElementById('cmt-week-sel').value=`${y}-W${String(w).padStart(2,'0')}`;
 })();
 populateCmtStudentSelect();
+
+// Registrar todas las funciones para que el HTML pueda llamarlas
+_fbInit({
+  teacherLogin: window.teacherLogin,
+  parentLogin: window.parentLogin,
+  switchGroup: window.switchGroup,
+  switchParcial: window.switchParcial,
+  switchSection: window.switchSection,
+  onDateChange: window.onDateChange,
+  setRec: window.setRec,
+  markAll: window.markAll,
+  saveAttendance: window.saveAttendance,
+  switchParentParcial: window.switchParentParcial,
+  saveComment: window.saveComment,
+  deleteComment: window.deleteComment,
+  exportCSV: window.exportCSV,
+});
 </script>
 </body>
 </html>
