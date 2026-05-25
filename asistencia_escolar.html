@@ -123,6 +123,17 @@
   .pcmt-entry{padding:12px;background:var(--surface2);border-radius:var(--radius);margin-bottom:8px;}
   .pcmt-week{font-size:11px;color:var(--text3);margin-bottom:4px;display:flex;gap:8px;align-items:center;}
   .pcmt-text{font-size:14px;color:var(--text);line-height:1.5;}
+  /* CALIFICACIONES */
+  .cal-input{width:80px;padding:6px 10px;border:1.5px solid var(--border);border-radius:8px;font-size:15px;font-family:'DM Mono',monospace;font-weight:500;text-align:center;background:var(--surface2);color:var(--text);outline:none;transition:border .15s;}
+  .cal-input:focus{border-color:var(--accent);background:var(--surface);}
+  .cal-input.changed{border-color:var(--warn);}
+  .cal-card{display:flex;justify-content:space-between;align-items:center;padding:12px;background:var(--surface2);border-radius:var(--radius);margin-bottom:8px;}
+  .cal-card:last-child{margin-bottom:0;}
+  .cal-parcial-name{font-size:12px;color:var(--text3);margin-bottom:3px;}
+  .cal-score{font-size:28px;font-weight:600;font-family:'DM Mono',monospace;}
+  .cal-score.aprobado{color:var(--p2);}
+  .cal-score.reprobado{color:var(--accent2);}
+  .cal-score.sin-calificar{color:var(--text3);font-size:18px;}
 </style>
 </head>
 <body>
@@ -195,6 +206,7 @@
     </div>
     <div class="sec-tabs">
       <button class="sec-tab active" id="sec-att" onclick="switchSection('att')">📋 Asistencia</button>
+      <button class="sec-tab" id="sec-cal" onclick="switchSection('cal')">🎓 Calificaciones</button>
       <button class="sec-tab" id="sec-cmt" onclick="switchSection('cmt')">💬 Comentarios</button>
     </div>
 
@@ -238,6 +250,38 @@
           <thead><tr><th>Alumno/a</th><th>Faltas (módulos)</th><th>% Asistencia</th></tr></thead>
           <tbody id="summary-table-body"></tbody>
         </table>
+      </div>
+    </div>
+
+    <!-- CALIFICACIONES -->
+    <div id="section-cal" style="display:none;">
+      <div class="parcial-bar">
+        <span class="parcial-label">Parcial:</span>
+        <select id="cal-parcial-sel" onchange="switchCalParcial(parseInt(this.value))" style="padding:8px 16px;border-radius:20px;border:1.5px solid var(--accent);font-size:13px;font-family:'DM Sans',sans-serif;font-weight:500;background:var(--accent-light);color:var(--accent);outline:none;cursor:pointer;">
+          <option value="1">1° Parcial</option>
+          <option value="2">2° Parcial</option>
+          <option value="3" selected>3° Parcial</option>
+        </select>
+      </div>
+      <div class="card">
+        <div class="card-title">Calificaciones — <span id="cal-group-label"></span> · <span id="cal-parcial-label"></span></div>
+        <div style="font-size:12px;color:var(--text3);margin-bottom:14px;">Escala del 0 al 10. Se guarda automáticamente al salir del campo.</div>
+        <table class="att-table">
+          <thead><tr><th>#</th><th>Alumno/a</th><th style="width:120px;">Calificación</th><th>Estado</th></tr></thead>
+          <tbody id="cal-table-body"></tbody>
+        </table>
+        <div class="actions-row">
+          <button class="btn-primary" onclick="saveAllCalif()">✓ Guardar todas</button>
+          <button class="btn-secondary" onclick="exportCalifCSV()">Exportar CSV</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Resumen de calificaciones — <span id="cal-summary-label"></span></div>
+        <div class="stats-row" style="margin-bottom:0;">
+          <div class="stat-box"><div class="stat-label">Promedio grupo</div><div class="stat-num" id="cal-promedio">—</div></div>
+          <div class="stat-box"><div class="stat-label">Aprobados</div><div class="stat-num green" id="cal-aprobados">—</div></div>
+          <div class="stat-box"><div class="stat-label">Reprobados</div><div class="stat-num red" id="cal-reprobados">—</div></div>
+        </div>
       </div>
     </div>
 
@@ -307,6 +351,12 @@
       <div id="parent-empty" style="font-size:14px;color:var(--text3);padding:8px 0;display:none;">Aún no hay registros en este parcial.</div>
     </div>
     <div class="card">
+      <div class="card-title">Calificaciones por parcial</div>
+      <div id="parent-cal-list">
+        <div style="font-size:14px;color:var(--text3);">Sin calificaciones aún.</div>
+      </div>
+    </div>
+    <div class="card">
       <div class="card-title">Comentarios del profesor</div>
       <div id="parent-cmt-list"><div style="font-size:14px;color:var(--text3);">Sin comentarios aún.</div></div>
     </div>
@@ -344,6 +394,9 @@ function switchParentParcial(p){ _callWhenReady('switchParentParcial',p); }
 function saveComment(){ _callWhenReady('saveComment'); }
 function deleteComment(gi,c,ts){ _callWhenReady('deleteComment',gi,c,ts); }
 function exportCSV(){ _callWhenReady('exportCSV'); }
+function switchCalParcial(p){ _callWhenReady('switchCalParcial',p); }
+function saveAllCalif(){ _callWhenReady('saveAllCalif'); }
+function exportCalifCSV(){ _callWhenReady('exportCalifCSV'); }
 
 const _pendingCalls = [];
 let _fbReady = false;
@@ -571,6 +624,7 @@ window.teacherLogin = function(){
     show('screen-teacher');
     subscribeAtt(currentParcial,currentGroup, renderTeacher);
     subscribeCmt(currentGroup, ()=>{ if(document.getElementById('section-cmt').style.display!=='none') renderComments(); });
+    subscribeCalif(()=>{ if(document.getElementById('section-cal').style.display!=='none') renderCalif(); });
   } else { document.getElementById('teacher-login-error').style.display='block'; }
 };
 
@@ -584,6 +638,7 @@ window.parentLogin = function(){
   // Escuchar en tiempo real
   subscribeAtt(null,null,()=>{ renderParentParcial(); updateParentTotals(); });
   subscribeCmt(gi,()=>renderParentComments(gi,found.code));
+  subscribeCalif(()=>renderParentCalif(gi,found.code));
   showParentView();
 };
 
@@ -606,10 +661,13 @@ window.switchParcial = function(p){
 };
 window.switchSection = function(sec){
   document.getElementById('section-att').style.display=sec==='att'?'':'none';
+  document.getElementById('section-cal').style.display=sec==='cal'?'':'none';
   document.getElementById('section-cmt').style.display=sec==='cmt'?'':'none';
   document.getElementById('sec-att').className='sec-tab'+(sec==='att'?' active':'');
+  document.getElementById('sec-cal').className='sec-tab'+(sec==='cal'?' active':'');
   document.getElementById('sec-cmt').className='sec-tab'+(sec==='cmt'?' active':'');
   if(sec==='cmt') renderComments();
+  if(sec==='cal') renderCalif();
 };
 window.onDateChange = function(){ currentDate=document.getElementById('date-picker').value; renderTeacher(); };
 
@@ -846,6 +904,133 @@ function renderParentComments(gi,code){
   </div>`).join('');
 }
 
+// ── CALIFICACIONES ──────────────────────────────────────────────────────────
+let calificaciones = {}; // cache local: calificaciones[gi][code][parcial] = numero
+let calParcial = 3;
+
+function subscribeCalif(callback){
+  onSnapshot(collection(db,'calificaciones'), snap=>{
+    calificaciones={};
+    snap.forEach(d=>{
+      const data=d.data();
+      if(!calificaciones[data.gi]) calificaciones[data.gi]={};
+      if(!calificaciones[data.gi][data.code]) calificaciones[data.gi][data.code]={};
+      calificaciones[data.gi][data.code][data.parcial]=data.valor;
+    });
+    callback();
+  });
+}
+
+window.switchCalParcial = function(p){
+  calParcial=p;
+  const sel=document.getElementById('cal-parcial-sel');
+  sel.value=p;
+  const bg={1:'var(--p1-light)',2:'var(--p2-light)',3:'var(--accent-light)'};
+  const cl={1:'var(--p1)',2:'var(--p2)',3:'var(--accent)'};
+  sel.style.background=bg[p]; sel.style.color=cl[p]; sel.style.borderColor=cl[p];
+  renderCalif();
+};
+
+window.onCalifInput = function(code, input){
+  input.classList.add('changed');
+};
+
+window.saveCalif = async function(code, input){
+  const val = parseFloat(input.value.replace(',','.'));
+  if(isNaN(val)||val<0||val>10){ toast('Calificación debe ser entre 0 y 10 ⚠'); input.value=''; return; }
+  const rounded = Math.round(val*10)/10;
+  input.value = rounded;
+  input.classList.remove('changed');
+  const docId = `g${currentGroup}_${code}_p${calParcial}`;
+  await setDoc(doc(db,'calificaciones',docId),{gi:currentGroup,code,parcial:calParcial,valor:rounded});
+  toast('Calificación guardada ✓');
+};
+
+window.saveAllCalif = async function(){
+  const inputs = document.querySelectorAll('.cal-input');
+  for(const input of inputs){
+    if(input.value.trim() && input.classList.contains('changed')){
+      await window.saveCalif(input.dataset.code, input);
+    }
+  }
+  toast('Todas las calificaciones guardadas ✓');
+};
+
+function renderCalif(){
+  const g=groups[currentGroup];
+  document.getElementById('cal-group-label').textContent=g.name;
+  document.getElementById('cal-parcial-label').textContent=PARCIALES[calParcial];
+  document.getElementById('cal-summary-label').textContent=`${g.name} · ${PARCIALES[calParcial]}`;
+  const gc=calificaciones[currentGroup]||{};
+  let suma=0,count=0,aprobados=0,reprobados=0;
+  document.getElementById('cal-table-body').innerHTML=g.students.map((s,i)=>{
+    const val=(gc[s.code]||{})[calParcial];
+    const hasVal = val!==undefined && val!==null;
+    if(hasVal){ suma+=val; count++; if(val>=6) aprobados++; else reprobados++; }
+    const statusBadge = !hasVal
+      ? '<span class="badge" style="background:var(--surface2);color:var(--text3);">Sin calificar</span>'
+      : val>=6
+        ? '<span class="badge badge-present">Aprobado</span>'
+        : '<span class="badge badge-absent">Reprobado</span>';
+    return `<tr>
+      <td style="color:var(--text3);font-size:12px;">${i+1}</td>
+      <td><div class="student-name">${s.name}</div></td>
+      <td>
+        <input class="cal-input" type="number" min="0" max="10" step="0.1"
+          data-code="${s.code}"
+          value="${hasVal?val:''}"
+          placeholder="—"
+          oninput="onCalifInput('${s.code}',this)"
+          onblur="saveCalif('${s.code}',this)"
+          onkeydown="if(event.key==='Enter') this.blur()" />
+      </td>
+      <td>${statusBadge}</td>
+    </tr>`;
+  }).join('');
+  document.getElementById('cal-promedio').textContent  = count>0 ? (suma/count).toFixed(1) : '—';
+  document.getElementById('cal-aprobados').textContent = count>0 ? aprobados : '—';
+  document.getElementById('cal-reprobados').textContent= count>0 ? reprobados : '—';
+}
+
+function renderParentCalif(gi, code){
+  const el=document.getElementById('parent-cal-list');
+  const gc=calificaciones[gi]||{};
+  const studentCal=(gc[code]||{});
+  const hasSome=[1,2,3].some(p=>studentCal[p]!==undefined);
+  if(!hasSome){ el.innerHTML='<div style="font-size:14px;color:var(--text3);">Sin calificaciones aún.</div>'; return; }
+  const pBg={1:'var(--p1-light)',2:'var(--p2-light)',3:'var(--p3-light)'};
+  const pCl={1:'var(--p1)',2:'var(--p2)',3:'var(--p3)'};
+  el.innerHTML=[1,2,3].map(p=>{
+    const val=studentCal[p];
+    if(val===undefined) return '';
+    const aprobado=val>=6;
+    return `<div class="cal-card">
+      <div>
+        <div class="cal-parcial-name" style="color:${pCl[p]};">${PARCIALES[p]}</div>
+        <div style="font-size:13px;color:var(--text2);">${aprobado?'Aprobado':'Reprobado'}</div>
+      </div>
+      <div class="cal-score ${aprobado?'aprobado':'reprobado'}">${val}</div>
+    </div>`;
+  }).join('');
+}
+
+window.exportCalifCSV = function(){
+  const g=groups[currentGroup];
+  const gc=calificaciones[currentGroup]||{};
+  let csv=`Alumno,Código,${[1,2,3].map(p=>PARCIALES[p]).join(',')},Promedio\n`;
+  g.students.forEach(s=>{
+    const vals=[1,2,3].map(p=>(gc[s.code]||{})[p]??'');
+    const nums=vals.filter(v=>v!=='');
+    const prom=nums.length>0?(nums.reduce((a,b)=>a+b,0)/nums.length).toFixed(1):'';
+    csv+=`"${s.name}","${s.code}",${vals.join(',')},${prom}\n`;
+  });
+  const blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a'); a.href=url;
+  a.download=`calificaciones_${g.name.replace(/\s/g,'_')}.csv`; a.click();
+  URL.revokeObjectURL(url); toast('CSV exportado ✓');
+};
+
 // ── EXPORT CSV ──────────────────────────────────────────────────────────────
 window.exportCSV = function(){
   const g=groups[currentGroup];
@@ -888,6 +1073,9 @@ _fbInit({
   saveComment: window.saveComment,
   deleteComment: window.deleteComment,
   exportCSV: window.exportCSV,
+  switchCalParcial: window.switchCalParcial,
+  saveAllCalif: window.saveAllCalif,
+  exportCalifCSV: window.exportCalifCSV,
 });
 </script>
 </body>
