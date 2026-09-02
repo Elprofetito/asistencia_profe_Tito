@@ -421,18 +421,43 @@ const _pendingCalls = [];
 let _fbReady = false;
 const _fbFunctions = {};
 
+// Deshabilitar botones mientras Firebase carga
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.querySelectorAll('.login-btn').forEach(b=>{
+    b.dataset.original = b.textContent;
+    b.textContent = 'Conectando…';
+    b.disabled = true;
+    b.style.opacity = '0.6';
+  });
+});
+
 function _callWhenReady(name, ...args){
   if(_fbReady && _fbFunctions[name]){
     _fbFunctions[name](...args);
   } else {
-    _pendingCalls.push({name, args});
+    // Firebase aún cargando — reintentar cada 200ms hasta 10 segundos
+    let attempts = 0;
+    const interval = setInterval(()=>{
+      attempts++;
+      if(_fbReady && _fbFunctions[name]){
+        clearInterval(interval);
+        _fbFunctions[name](...args);
+      } else if(attempts > 50){
+        clearInterval(interval);
+        alert('Error de conexión. Verifica tu internet y recarga la página.');
+      }
+    }, 200);
   }
 }
 function _fbInit(fns){
   Object.assign(_fbFunctions, fns);
   _fbReady = true;
-  _pendingCalls.forEach(({name,args})=>{ if(_fbFunctions[name]) _fbFunctions[name](...args); });
-  _pendingCalls.length = 0;
+  // Quitar indicador de carga
+  document.querySelectorAll('.login-btn').forEach(b=>{
+    b.disabled=false;
+    b.style.opacity='1';
+    if(b.dataset.original) b.textContent=b.dataset.original;
+  });
 }
 </script>
 <script type="module">
