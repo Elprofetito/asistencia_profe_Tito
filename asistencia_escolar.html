@@ -140,6 +140,23 @@
 
 <div id="sync-indicator">Guardando en la nube… ☁</div>
 
+<!-- SELECTOR DE MATERIA (alumnos del 106) -->
+<div id="screen-materia" class="screen">
+  <div class="login-wrap">
+    <div class="login-box">
+      <div style="width:48px;height:48px;margin-bottom:18px;">
+        <img src="https://raw.githubusercontent.com/Elprofetito/asistencia_profe_Tito/main/Logo_halconesCEB.png" alt="CEB 8/2" style="width:48px;height:48px;object-fit:contain;">
+      </div>
+      <h1 style="font-size:18px;">Selecciona la materia</h1>
+      <p id="materia-student-name" style="font-size:13px;color:var(--text2);margin-bottom:24px;"></p>
+      <button id="materia-btn-1" class="login-btn" style="margin-bottom:10px;">Materia 1</button>
+      <button id="materia-btn-2" class="login-btn" style="background:var(--p2);">Materia 2</button>
+      <hr class="divider">
+      <div class="login-switch"><a onclick="show('screen-login')">← Volver</a></div>
+    </div>
+  </div>
+</div>
+
 <!-- LOGIN PADRES -->
 <div id="screen-login" class="screen active">
   <div class="login-wrap">
@@ -151,7 +168,7 @@
       <p>Centro de Estudios de Bachillerato 8/2</p>
       <div class="field">
         <label>Código de acceso</label>
-        <input type="text" id="parent-code-input" placeholder="Ej. PFyH20501" style="letter-spacing:.02em;" onkeydown="if(event.key==='Enter') parentLogin()" />
+        <input type="text" id="parent-code-input" placeholder="Ej. PFyH10501" style="letter-spacing:.02em;" onkeydown="if(event.key==='Enter') parentLogin()" />
       </div>
       <button class="login-btn" onclick="parentLogin()">Consultar asistencia →</button>
       <div class="login-error" id="login-error">Código no encontrado. Verifica con tu profesor/a.</div>
@@ -200,9 +217,9 @@
   </div>
   <div class="main">
     <div class="tabs">
-      <button class="tab-btn active" onclick="switchGroup(0,this)">PFyH 205</button>
-      <button class="tab-btn" onclick="switchGroup(1,this)">PFyH 206</button>
-      <button class="tab-btn" onclick="switchGroup(2,this)">CsSoc 206</button>
+      <button class="tab-btn active" onclick="switchGroup(0,this)">PFyH 105</button>
+      <button class="tab-btn" onclick="switchGroup(1,this)">PFyH 106</button>
+      <button class="tab-btn" onclick="switchGroup(2,this)">CSoc 106</button>
     </div>
     <div class="sec-tabs">
       <button class="sec-tab active" id="sec-att" onclick="switchSection('att')">📋 Asistencia</button>
@@ -320,8 +337,9 @@
       </div>
       <img src="https://raw.githubusercontent.com/Elprofetito/asistencia_profe_Tito/main/Logo_halconesCEB.png" alt="CEB 8/2" style="height:48px;width:48px;object-fit:contain;opacity:.9;">
     </div>
-    <div style="display:flex;justify-content:flex-end;margin-top:4px;">
-      <button class="btn-ghost" style="color:rgba(255,255,255,.8);padding:4px 8px;" onclick="show('screen-login')">← Salir</button>
+    <div style="display:flex;justify-content:space-between;margin-top:4px;align-items:center;">
+      <button id="cambiar-materia-btn" class="btn-ghost" style="color:rgba(255,255,255,.8);padding:4px 8px;display:none;" onclick="show('screen-materia')">⇄ Cambiar materia</button>
+      <button class="btn-ghost" style="color:rgba(255,255,255,.8);padding:4px 8px;margin-left:auto;" onclick="show('screen-login')">← Salir</button>
     </div>
     <div class="parent-stats">
       <div class="parent-stat"><div class="parent-stat-num" id="p-stat-present">0</div><div class="parent-stat-label">Asistencias</div></div>
@@ -391,6 +409,7 @@ function setRec(c,m,v){ _callWhenReady('setRec',c,m,v); }
 function markAll(v){ _callWhenReady('markAll',v); }
 function saveAttendance(){ _callWhenReady('saveAttendance'); }
 function switchParentParcial(p){ _callWhenReady('switchParentParcial',p); }
+function selectMateria(gi){ _callWhenReady('selectMateria',gi); }
 function saveComment(){ _callWhenReady('saveComment'); }
 function deleteComment(gi,c,ts){ _callWhenReady('deleteComment',gi,c,ts); }
 function exportCSV(){ _callWhenReady('exportCSV'); }
@@ -438,101 +457,148 @@ const TEACHER_PASS = "CEB82Halcones";
 const PARCIALES = {1:'1° Parcial', 2:'2° Parcial', 3:'3° Parcial'};
 
 const groups = [
-  {name:"PFyH 205",students:[
-    {name:"Aguilar Rodriguez Sebastian",code:"PFyH20501"},
-    {name:"Alcantara Ceballos Diana Leticia",code:"PFyH20502"},
-    {name:"Ballona Rodriguez Jesus Eduardo",code:"PFyH20503"},
-    {name:"Chavez Dominguez Maria Guadalupe",code:"PFyH20504"},
-    {name:"Corona Castillo Jonathan Merari",code:"PFyH20505"},
-    {name:"Cota Bernal Jesus Alberto",code:"PFyH20506"},
-    {name:"De Jesus Sotelo Jorge",code:"PFyH20507"},
-    {name:"Geraldo Ibarra Perla",code:"PFyH20508"},
-    {name:"Gil Cota Cristhian Jaziel",code:"PFyH20509"},
-    {name:"Guzman Cortes Franco Alberto",code:"PFyH20510"},
-    {name:"Hernandez Soto Kael Alberto",code:"PFyH20511"},
-    {name:"Jimenez Guadarrama Celina Sarahi",code:"PFyH20512"},
-    {name:"Landeros Castillo Jesus Enrique",code:"PFyH20513"},
-    {name:"Leon Chavez Eyden Eduardo",code:"PFyH20514"},
-    {name:"Leyva Garcia Fernanda Catalina",code:"PFyH20515"},
-    {name:"Lieras Araiza Ileanna",code:"PFyH20516"},
-    {name:"Manriquez Salgado Christian Alexander",code:"PFyH20517"},
-    {name:"Marcial Fuentes Luis Uriel",code:"PFyH20518"},
-    {name:"Marron Montalvo Angeles Michel",code:"PFyH20519"},
-    {name:"Mayoral Diaz Christian Adriela",code:"PFyH20520"},
-    {name:"Navarro Molina Jesus Antonio",code:"PFyH20521"},
-    {name:"Nuñez Perez Elizabeth Carolina",code:"PFyH20522"},
-    {name:"Olachea Ortega Sherlyn Guadalupe",code:"PFyH20523"},
-    {name:"Oleta Ortega Alondra",code:"PFyH20524"},
-    {name:"Ramirez Lucero Marco Antonio",code:"PFyH20525"},
-    {name:"Sanchez De La Rosa Sandra Yoselin",code:"PFyH20526"},
-    {name:"Sanchez Vergara Naila Isabel",code:"PFyH20527"},
-    {name:"Sandez Olachea Oscar Alejandro",code:"PFyH20528"},
-    {name:"Serrano Gil Maria Jose",code:"PFyH20529"},
-    {name:"Villegas Silva Jose Angel",code:"PFyH20530"},
-    {name:"Zazueta Tirado Dayana Yamileth",code:"PFyH20531"},
-    {name:"Zuñiga Mendez Angela Cristina",code:"PFyH20532"},
+  {name:"PFyH 105", materia:"Pensamiento Filosófico y Humanidades 1", students:[
+    {name:"Aguero Cardenas Brandon Nicolas",code:"PFyH10501"},
+    {name:"Agundez Cota Grecia Karolina",code:"PFyH10502"},
+    {name:"Alvarez Haro Kenzy",code:"PFyH10503"},
+    {name:"Angulo Godinez Luna Ellebalyn",code:"PFyH10504"},
+    {name:"Arellano Salas Brandon Geovany",code:"PFyH10505"},
+    {name:"Bianchis Amador Federico Zuriel",code:"PFyH10506"},
+    {name:"Calderon Ojeda Yazmin Guadalupe",code:"PFyH10507"},
+    {name:"Cardenas Martinez Issac Said",code:"PFyH10508"},
+    {name:"Collazo Arce Liam Francisco",code:"PFyH10509"},
+    {name:"Diaz Alegria Luis Alberto",code:"PFyH10510"},
+    {name:"Espiritu Santiago Martin Rodrigo",code:"PFyH10511"},
+    {name:"Estrada Castro Andres Eduardo",code:"PFyH10512"},
+    {name:"Garcia Rodriguez Camila Yatziri",code:"PFyH10513"},
+    {name:"Gil Cota Ximena Carolina",code:"PFyH10514"},
+    {name:"Gonzalez Doroteo Brittany Esmeralda",code:"PFyH10515"},
+    {name:"Gonzalez Gonzalez Jose Rafael",code:"PFyH10516"},
+    {name:"Hernandez Alcala Zair Azael",code:"PFyH10517"},
+    {name:"Ledesma Martinez Jose Ramon",code:"PFyH10518"},
+    {name:"Lopez Chavarria Alexander",code:"PFyH10519"},
+    {name:"Loya Lorenzo Joselin",code:"PFyH10520"},
+    {name:"Martinez Castillo Bayron Gabriel",code:"PFyH10521"},
+    {name:"Ortega Gomez Valentina",code:"PFyH10522"},
+    {name:"Renteria Sanchez Victoria Karolina",code:"PFyH10523"},
+    {name:"Resendiz Castro Silvana",code:"PFyH10524"},
+    {name:"Reza Villalobos Paulina Alegna",code:"PFyH10525"},
+    {name:"Rivera Espinosa Cristopher Andres",code:"PFyH10526"},
+    {name:"Rodriguez Zuloaga Gisela Dannae",code:"PFyH10527"},
+    {name:"Romanillo Cabrera Dulce Elizabeth",code:"PFyH10528"},
+    {name:"Salvador Garay Heidy Belen",code:"PFyH10529"},
+    {name:"Silva Aguilar Joshua Said",code:"PFyH10530"},
+    {name:"Soriano Garcia Geovani Asael",code:"PFyH10531"},
+    {name:"Torres Acosta Andres Sebastian",code:"PFyH10532"},
+    {name:"Troyo Garcia Ximena Scarlett",code:"PFyH10533"},
+    {name:"Villa Romero Romina Solansh",code:"PFyH10534"},
   ]},
-  {name:"PFyH 206",students:[
-    {name:"Alamea Yañez Joohan Romario",code:"PFyH20601"},
-    {name:"Albañez Perez Guadalupe Janely",code:"PFyH20602"},
-    {name:"Alvarez Oriza Joel Obiel",code:"PFyH20603"},
-    {name:"Aragon Nuñez Mario Efrain",code:"PFyH20604"},
-    {name:"Avila Jaramillo Camila Guadalupe",code:"PFyH20605"},
-    {name:"Aviles Higuera Ximena Del Pilar",code:"PFyH20606"},
-    {name:"Carlos Rosales Regina Lizbeth",code:"PFyH20607"},
-    {name:"Casillas Gonzalez Carlos Alonso",code:"PFyH20608"},
-    {name:"Castillo Espinoza Sofia Angelina",code:"PFyH20609"},
-    {name:"Contreras Castellanos Carol Arlette",code:"PFyH20610"},
-    {name:"Flores Castellanos Noelia Michel",code:"PFyH20611"},
-    {name:"Flores Herrera Victor Joel",code:"PFyH20612"},
-    {name:"Garcia Galvan Brian Arturo",code:"PFyH20613"},
-    {name:"Garcia Guluarte Marlia Romina",code:"PFyH20614"},
-    {name:"Geraldo Avalos Diego Andres",code:"PFyH20615"},
-    {name:"Gutierrez Portal Alexander Azhael",code:"PFyH20616"},
-    {name:"Jimenez Felix Maria Fernanda",code:"PFyH20617"},
-    {name:"Landazuri Leon Lian Alejandro",code:"PFyH20618"},
-    {name:"Lupercio Espinoza Ana Romina",code:"PFyH20619"},
-    {name:"Navarro Martinez Daniel Alfredo",code:"PFyH20620"},
-    {name:"Nuñez Romanillo Santiago Adair",code:"PFyH20621"},
-    {name:"Obregon Fugon Jade",code:"PFyH20622"},
-    {name:"Ortega Flores Jhosman Miguel",code:"PFyH20623"},
-    {name:"Quevedo Vega Elena Elizabeth",code:"PFyH20624"},
-    {name:"Rosas Rivera Angelica Guadalupe",code:"PFyH20625"},
-    {name:"Sandoval Hirales Karla Michel",code:"PFyH20626"},
-    {name:"Vargas Velazquez Alexa Dayana",code:"PFyH20627"},
-    {name:"Villagomez Navarro Nery Alexandria",code:"PFyH20628"},
-    {name:"Zavalza Arce Evelin Arelith",code:"PFyH20629"},
+  {name:"PFyH 106", materia:"Pensamiento Filosófico y Humanidades 1", linkedGroup:2, students:[
+    {name:"Acevedo Olivas Francia Angelique",code:"G10601"},
+    {name:"Alvarez Estrada Joshua Esteban",code:"G10602"},
+    {name:"Camacho Hernandez Fatima Gabriela",code:"G10603"},
+    {name:"Castro Manriquez Brisa Guadalupe",code:"G10604"},
+    {name:"Cota Cota Karla Paris",code:"G10605"},
+    {name:"Cota Villa Diego Andres",code:"G10606"},
+    {name:"Cota Villa Fatima Daniela",code:"G10607"},
+    {name:"Cruz Trinidad Jesus",code:"G10608"},
+    {name:"Dominguez Mayoral Fernanda Rafaela",code:"G10609"},
+    {name:"Galindo Orozco Regina Scarlet",code:"G10610"},
+    {name:"Garcia Aguirre Omar Bartolo",code:"G10611"},
+    {name:"Geraldo Avila Danna Noelia",code:"G10612"},
+    {name:"Gonzalez Calderon Joel Eduardo",code:"G10613"},
+    {name:"Guerrero Romero Luis Fernando",code:"G10614"},
+    {name:"Flores Martin Alexie",code:"G10615"},
+    {name:"Hernandez Cruz Daniel",code:"G10616"},
+    {name:"Hernandez Rodriguez Brayan Josue",code:"G10617"},
+    {name:"Jimenez Nunez Romina Ximena",code:"G10618"},
+    {name:"Leyva Robledo Alba Mizuky",code:"G10619"},
+    {name:"Lopez Castro Jesika Natalia",code:"G10620"},
+    {name:"Lopez Tamayo Diego Sebastian",code:"G10621"},
+    {name:"Lucero Cota Karla Patricia",code:"G10622"},
+    {name:"Luna Elizalde Vanessa Jaqueline",code:"G10623"},
+    {name:"Marquez Mendoza Pedro Alberto",code:"G10624"},
+    {name:"Marquez Vidana Celeste Elizabeth",code:"G10625"},
+    {name:"Navarrete Velazquez Alexis Leonardo",code:"G10626"},
+    {name:"Nunez Cereso Adrian Ulisses",code:"G10627"},
+    {name:"Olivares Perez Derek Aaron",code:"G10628"},
+    {name:"Ortega Ornelas Linsdy America",code:"G10629"},
+    {name:"Pardave Lopez Alejandro Sebastian",code:"G10630"},
+    {name:"Quijada Nunez Francisco Andres",code:"G10631"},
+    {name:"Sotelo Cota Madisson Daniela",code:"G10632"},
+    {name:"Torres Cerezo Jesus Emmanuel",code:"G10633"},
+    {name:"Villagomez Navarro Salvador Ernesto",code:"G10634"},
   ]},
-  {name:"CsSoc 206",students:[
-    {name:"Alamea Yañez Joohan Romario",code:"CsSoc20601"},
-    {name:"Albañez Perez Guadalupe Janely",code:"CsSoc20602"},
-    {name:"Alvarez Oriza Joel Obiel",code:"CsSoc20603"},
-    {name:"Aragon Nuñez Mario Efrain",code:"CsSoc20604"},
-    {name:"Avila Jaramillo Camila Guadalupe",code:"CsSoc20605"},
-    {name:"Aviles Higuera Ximena Del Pilar",code:"CsSoc20606"},
-    {name:"Carlos Rosales Regina Lizbeth",code:"CsSoc20607"},
-    {name:"Casillas Gonzalez Carlos Alonso",code:"CsSoc20608"},
-    {name:"Castillo Espinoza Sofia Angelina",code:"CsSoc20609"},
-    {name:"Contreras Castellanos Carol Arlette",code:"CsSoc20610"},
-    {name:"Flores Castellanos Noelia Michel",code:"CsSoc20611"},
-    {name:"Flores Herrera Victor Joel",code:"CsSoc20612"},
-    {name:"Garcia Galvan Brian Arturo",code:"CsSoc20613"},
-    {name:"Garcia Guluarte Marlia Romina",code:"CsSoc20614"},
-    {name:"Geraldo Avalos Diego Andres",code:"CsSoc20615"},
-    {name:"Gutierrez Portal Alexander Azhael",code:"CsSoc20616"},
-    {name:"Jimenez Felix Maria Fernanda",code:"CsSoc20617"},
-    {name:"Landazuri Leon Lian Alejandro",code:"CsSoc20618"},
-    {name:"Lupercio Espinoza Ana Romina",code:"CsSoc20619"},
-    {name:"Navarro Martinez Daniel Alfredo",code:"CsSoc20620"},
-    {name:"Nuñez Romanillo Santiago Adair",code:"CsSoc20621"},
-    {name:"Obregon Fugon Jade",code:"CsSoc20622"},
-    {name:"Ortega Flores Jhosman Miguel",code:"CsSoc20623"},
-    {name:"Quevedo Vega Elena Elizabeth",code:"CsSoc20624"},
-    {name:"Rosas Rivera Angelica Guadalupe",code:"CsSoc20625"},
-    {name:"Sandoval Hirales Karla Michel",code:"CsSoc20626"},
-    {name:"Vargas Velazquez Alexa Dayana",code:"CsSoc20627"},
-    {name:"Villagomez Navarro Nery Alexandria",code:"CsSoc20628"},
-    {name:"Zavalza Arce Evelin Arelith",code:"CsSoc20629"},
+  {name:"CSoc 106", materia:"Ciencias Sociales 1", linkedGroup:1, students:[
+    {name:"Acevedo Olivas Francia Angelique",code:"G10601"},
+    {name:"Alvarez Estrada Joshua Esteban",code:"G10602"},
+    {name:"Camacho Hernandez Fatima Gabriela",code:"G10603"},
+    {name:"Castro Manriquez Brisa Guadalupe",code:"G10604"},
+    {name:"Cota Cota Karla Paris",code:"G10605"},
+    {name:"Cota Villa Diego Andres",code:"G10606"},
+    {name:"Cota Villa Fatima Daniela",code:"G10607"},
+    {name:"Cruz Trinidad Jesus",code:"G10608"},
+    {name:"Dominguez Mayoral Fernanda Rafaela",code:"G10609"},
+    {name:"Galindo Orozco Regina Scarlet",code:"G10610"},
+    {name:"Garcia Aguirre Omar Bartolo",code:"G10611"},
+    {name:"Geraldo Avila Danna Noelia",code:"G10612"},
+    {name:"Gonzalez Calderon Joel Eduardo",code:"G10613"},
+    {name:"Guerrero Romero Luis Fernando",code:"G10614"},
+    {name:"Flores Martin Alexie",code:"G10615"},
+    {name:"Hernandez Cruz Daniel",code:"G10616"},
+    {name:"Hernandez Rodriguez Brayan Josue",code:"G10617"},
+    {name:"Jimenez Nunez Romina Ximena",code:"G10618"},
+    {name:"Leyva Robledo Alba Mizuky",code:"G10619"},
+    {name:"Lopez Castro Jesika Natalia",code:"G10620"},
+    {name:"Lopez Tamayo Diego Sebastian",code:"G10621"},
+    {name:"Lucero Cota Karla Patricia",code:"G10622"},
+    {name:"Luna Elizalde Vanessa Jaqueline",code:"G10623"},
+    {name:"Marquez Mendoza Pedro Alberto",code:"G10624"},
+    {name:"Marquez Vidana Celeste Elizabeth",code:"G10625"},
+    {name:"Navarrete Velazquez Alexis Leonardo",code:"G10626"},
+    {name:"Nunez Cereso Adrian Ulisses",code:"G10627"},
+    {name:"Olivares Perez Derek Aaron",code:"G10628"},
+    {name:"Ortega Ornelas Linsdy America",code:"G10629"},
+    {name:"Pardave Lopez Alejandro Sebastian",code:"G10630"},
+    {name:"Quijada Nunez Francisco Andres",code:"G10631"},
+    {name:"Sotelo Cota Madisson Daniela",code:"G10632"},
+    {name:"Torres Cerezo Jesus Emmanuel",code:"G10633"},
+    {name:"Villagomez Navarro Salvador Ernesto",code:"G10634"},
+  ]},
+];
+    {name:"Agundez Cota Grecia Karolina",code:"PFyH10502"},
+    {name:"Alvarez Haro Kenzy",code:"PFyH10503"},
+    {name:"Angulo Godinez Luna Ellebalyn",code:"PFyH10504"},
+    {name:"Arellano Salas Brandon Geovany",code:"PFyH10505"},
+    {name:"Bianchis Amador Federico Zuriel",code:"PFyH10506"},
+    {name:"Calderon Ojeda Yazmin Guadalupe",code:"PFyH10507"},
+    {name:"Cardenas Martinez Issac Said",code:"PFyH10508"},
+    {name:"Collazo Arce Liam Francisco",code:"PFyH10509"},
+    {name:"Diaz Alegria Luis Alberto",code:"PFyH10510"},
+    {name:"Espiritu Santiago Martin Rodrigo",code:"PFyH10511"},
+    {name:"Estrada Castro Andres Eduardo",code:"PFyH10512"},
+    {name:"Garcia Rodriguez Camila Yatziri",code:"PFyH10513"},
+    {name:"Gil Cota Ximena Carolina",code:"PFyH10514"},
+    {name:"Gonzalez Doroteo Brittany Esmeralda",code:"PFyH10515"},
+    {name:"Gonzalez Gonzalez Jose Rafael",code:"PFyH10516"},
+    {name:"Hernandez Alcala Zair Azael",code:"PFyH10517"},
+    {name:"Ledesma Martinez Jose Ramon",code:"PFyH10518"},
+    {name:"Lopez Chavarria Alexander",code:"PFyH10519"},
+    {name:"Loya Lorenzo Joselin",code:"PFyH10520"},
+    {name:"Martinez Castillo Bayron Gabriel",code:"PFyH10521"},
+    {name:"Ortega Gomez Valentina",code:"PFyH10522"},
+    {name:"Renteria Sanchez Victoria Karolina",code:"PFyH10523"},
+    {name:"Resendiz Castro Silvana",code:"PFyH10524"},
+    {name:"Reza Villalobos Paulina Alegna",code:"PFyH10525"},
+    {name:"Rivera Espinosa Cristopher Andres",code:"PFyH10526"},
+    {name:"Rodriguez Zuloaga Gisela Dannae",code:"PFyH10527"},
+    {name:"Romanillo Cabrera Dulce Elizabeth",code:"PFyH10528"},
+    {name:"Salvador Garay Heidy Belen",code:"PFyH10529"},
+    {name:"Silva Aguilar Joshua Said",code:"PFyH10530"},
+    {name:"Soriano Garcia Geovani Asael",code:"PFyH10531"},
+    {name:"Torres Acosta Andres Sebastian",code:"PFyH10532"},
+    {name:"Troyo Garcia Ximena Scarlett",code:"PFyH10533"},
+    {name:"Villa Romero Romina Solansh",code:"PFyH10534"},
   ]},
 ];
 
@@ -630,17 +696,46 @@ window.teacherLogin = function(){
 
 window.parentLogin = function(){
   const code=document.getElementById('parent-code-input').value.trim().toLowerCase();
-  let found=null,gi=-1;
-  groups.forEach((g,i)=>g.students.forEach(s=>{if(s.code.toLowerCase()===code){found=s;gi=i;}}));
+  let found=null, gi=-1;
+  groups.forEach((g,i)=>g.students.forEach(s=>{
+    if(s.code.toLowerCase()===code && found===null){found=s;gi=i;}
+  }));
   if(!found){document.getElementById('login-error').style.display='block';return;}
   document.getElementById('login-error').style.display='none';
-  parentStudentRef=found; parentGroupRef=gi; parentParcial=3;
-  // Escuchar en tiempo real
+
+  // Detectar si el alumno pertenece a dos grupos (grupo con linkedGroup)
+  const linkedGi = groups[gi].linkedGroup;
+  if(linkedGi!==undefined){
+    // Mostrar selector de materia
+    showMateriaSelector(found, gi, linkedGi);
+  } else {
+    parentStudentRef=found; parentGroupRef=gi; parentParcial=3;
+    subscribeAtt(null,null,()=>{ renderParentParcial(); updateParentTotals(); });
+    subscribeCmt(gi,()=>renderParentComments(gi,found.code));
+    subscribeCalif(()=>renderParentCalif(gi,found.code));
+    showParentView();
+  }
+};
+
+window.selectMateria = function(gi){
+  const s=parentStudentRef;
+  parentGroupRef=gi; parentParcial=3;
   subscribeAtt(null,null,()=>{ renderParentParcial(); updateParentTotals(); });
-  subscribeCmt(gi,()=>renderParentComments(gi,found.code));
-  subscribeCalif(()=>renderParentCalif(gi,found.code));
+  subscribeCmt(gi,()=>renderParentComments(gi,s.code));
+  subscribeCalif(()=>renderParentCalif(gi,s.code));
   showParentView();
 };
+
+function showMateriaSelector(student, gi1, gi2){
+  parentStudentRef=student;
+  const g1=groups[gi1], g2=groups[gi2];
+  document.getElementById('materia-student-name').textContent=student.name;
+  document.getElementById('materia-btn-1').textContent=g1.materia || g1.name;
+  document.getElementById('materia-btn-1').onclick=()=>selectMateria(gi1);
+  document.getElementById('materia-btn-2').textContent=g2.materia || g2.name;
+  document.getElementById('materia-btn-2').onclick=()=>selectMateria(gi2);
+  show('screen-materia');
+}
 
 // ── TEACHER ────────────────────────────────────────────────────────────────
 window.switchGroup = function(idx,el){
@@ -771,6 +866,9 @@ function showParentView(){
   const s=parentStudentRef,gi=parentGroupRef;
   document.getElementById('parent-group-label').textContent=groups[gi].name;
   document.getElementById('parent-student-name').textContent=s.name;
+  // Mostrar botón de cambiar materia si el grupo tiene linkedGroup
+  const btn=document.getElementById('cambiar-materia-btn');
+  btn.style.display = groups[gi].linkedGroup!==undefined ? 'block' : 'none';
   updateParentTotals();
   show('screen-parent');
   switchParentParcial(3);
@@ -1076,6 +1174,7 @@ _fbInit({
   switchCalParcial: window.switchCalParcial,
   saveAllCalif: window.saveAllCalif,
   exportCalifCSV: window.exportCalifCSV,
+  selectMateria: window.selectMateria,
 });
 </script>
 </body>
