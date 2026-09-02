@@ -399,7 +399,17 @@ function show(id){
 }
 // Estas funciones serán sobreescritas por el módulo de Firebase una vez que cargue
 // Mientras tanto muestran un indicador de carga
-function teacherLogin(){ _callWhenReady('teacherLogin'); }
+function teacherLogin(){
+  const pass=document.getElementById('teacher-pass').value;
+  const name=document.getElementById('teacher-user').value.trim();
+  if(pass==='CEB82Halcones' && name){
+    document.getElementById('teacher-name-chip').textContent=name;
+    show('screen-teacher');
+    _callWhenReady('initTeacher');
+  } else {
+    document.getElementById('teacher-login-error').style.display='block';
+  }
+}
 function parentLogin(){ _callWhenReady('parentLogin'); }
 function switchGroup(idx,el){ _callWhenReady('switchGroup',idx,el); }
 function switchParcial(p){ _callWhenReady('switchParcial',p); }
@@ -420,16 +430,6 @@ function exportCalifCSV(){ _callWhenReady('exportCalifCSV'); }
 const _pendingCalls = [];
 let _fbReady = false;
 const _fbFunctions = {};
-
-// Deshabilitar botones mientras Firebase carga
-document.addEventListener('DOMContentLoaded', ()=>{
-  document.querySelectorAll('.login-btn').forEach(b=>{
-    b.dataset.original = b.textContent;
-    b.textContent = 'Conectando…';
-    b.disabled = true;
-    b.style.opacity = '0.6';
-  });
-});
 
 function _callWhenReady(name, ...args){
   if(_fbReady && _fbFunctions[name]){
@@ -452,12 +452,6 @@ function _callWhenReady(name, ...args){
 function _fbInit(fns){
   Object.assign(_fbFunctions, fns);
   _fbReady = true;
-  // Quitar indicador de carga
-  document.querySelectorAll('.login-btn').forEach(b=>{
-    b.disabled=false;
-    b.style.opacity='1';
-    if(b.dataset.original) b.textContent=b.dataset.original;
-  });
 }
 </script>
 <script type="module">
@@ -706,17 +700,11 @@ function subscribeCmt(gi,callback){
 }
 
 // ── AUTH ───────────────────────────────────────────────────────────────────
-window.teacherLogin = function(){
-  const pass=document.getElementById('teacher-pass').value;
-  const name=document.getElementById('teacher-user').value.trim();
-  if(pass===TEACHER_PASS && name){
-    document.getElementById('teacher-name-chip').textContent=name;
-    document.getElementById('date-picker').value=currentDate;
-    show('screen-teacher');
-    subscribeAtt(currentParcial,currentGroup, renderTeacher);
-    subscribeCmt(currentGroup, ()=>{ if(document.getElementById('section-cmt').style.display!=='none') renderComments(); });
-    subscribeCalif(()=>{ if(document.getElementById('section-cal').style.display!=='none') renderCalif(); });
-  } else { document.getElementById('teacher-login-error').style.display='block'; }
+window.initTeacher = function(){
+  document.getElementById('date-picker').value=currentDate;
+  subscribeAtt(currentParcial,currentGroup, renderTeacher);
+  subscribeCmt(currentGroup, ()=>{ if(document.getElementById('section-cmt').style.display!=='none') renderComments(); });
+  subscribeCalif(()=>{ if(document.getElementById('section-cal').style.display!=='none') renderCalif(); });
 };
 
 window.parentLogin = function(){
@@ -1183,7 +1171,7 @@ populateCmtStudentSelect();
 
 // Registrar todas las funciones para que el HTML pueda llamarlas
 _fbInit({
-  teacherLogin: window.teacherLogin,
+  initTeacher: window.initTeacher,
   parentLogin: window.parentLogin,
   switchGroup: window.switchGroup,
   switchParcial: window.switchParcial,
