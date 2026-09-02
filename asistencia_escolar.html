@@ -232,9 +232,9 @@
       <div class="parcial-bar">
         <span class="parcial-label">Parcial:</span>
         <select id="parcial-select" onchange="switchParcial(parseInt(this.value))" style="padding:8px 16px;border-radius:20px;border:1.5px solid var(--accent);font-size:13px;font-family:'DM Sans',sans-serif;font-weight:500;background:var(--accent-light);color:var(--accent);outline:none;cursor:pointer;">
-          <option value="1">1° Parcial</option>
+          <option value="1" selected>1° Parcial</option>
           <option value="2">2° Parcial</option>
-          <option value="3" selected>3° Parcial</option>
+          <option value="3">3° Parcial</option>
         </select>
       </div>
       <div class="stats-row">
@@ -275,9 +275,9 @@
       <div class="parcial-bar">
         <span class="parcial-label">Parcial:</span>
         <select id="cal-parcial-sel" onchange="switchCalParcial(parseInt(this.value))" style="padding:8px 16px;border-radius:20px;border:1.5px solid var(--accent);font-size:13px;font-family:'DM Sans',sans-serif;font-weight:500;background:var(--accent-light);color:var(--accent);outline:none;cursor:pointer;">
-          <option value="1">1° Parcial</option>
+          <option value="1" selected>1° Parcial</option>
           <option value="2">2° Parcial</option>
-          <option value="3" selected>3° Parcial</option>
+          <option value="3">3° Parcial</option>
         </select>
       </div>
       <div class="card">
@@ -309,7 +309,7 @@
         <div class="cmt-form">
           <div class="cmt-row">
             <select class="cmt-select" id="cmt-parcial-sel">
-              <option value="1">1° Parcial</option><option value="2">2° Parcial</option><option value="3" selected>3° Parcial</option>
+              <option value="1" selected>1° Parcial</option><option value="2">2° Parcial</option><option value="3">3° Parcial</option>
             </select>
             <select class="cmt-select" id="cmt-student-sel"><option value="">— Selecciona alumno/a —</option></select>
             <input type="week" id="cmt-week-sel" class="cmt-select" style="min-width:160px;" />
@@ -351,9 +351,9 @@
     <div class="card" style="margin-top:16px;">
       <div class="card-title">Selecciona el parcial</div>
       <div class="p-tabs">
-        <div class="p-tab" id="ptab1" onclick="switchParentParcial(1)">1° Parcial</div>
+        <div class="p-tab active-1" id="ptab1" onclick="switchParentParcial(1)">1° Parcial</div>
         <div class="p-tab" id="ptab2" onclick="switchParentParcial(2)">2° Parcial</div>
-        <div class="p-tab active-3" id="ptab3" onclick="switchParentParcial(3)">3° Parcial</div>
+        <div class="p-tab" id="ptab3" onclick="switchParentParcial(3)">3° Parcial</div>
       </div>
       <div class="card-title" style="margin-bottom:8px;">Porcentaje de asistencia</div>
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
@@ -537,6 +537,8 @@ const groups = [
     {name:"Lucero Cota Karla Patricia",code:"G10622"},
     {name:"Luna Elizalde Vanessa Jaqueline",code:"G10623"},
     {name:"Marquez Mendoza Pedro Alberto",code:"G10624"},
+    {name:"Manriquez Perez Dayanna Jolette",code:"G10635"},
+    {name:"Martinez Lara Dayana Michel",code:"G10636"},
     {name:"Marquez Vidana Celeste Elizabeth",code:"G10625"},
     {name:"Navarrete Velazquez Alexis Leonardo",code:"G10626"},
     {name:"Nunez Cereso Adrian Ulisses",code:"G10627"},
@@ -573,6 +575,8 @@ const groups = [
     {name:"Lucero Cota Karla Patricia",code:"G10622"},
     {name:"Luna Elizalde Vanessa Jaqueline",code:"G10623"},
     {name:"Marquez Mendoza Pedro Alberto",code:"G10624"},
+    {name:"Manriquez Perez Dayanna Jolette",code:"G10635"},
+    {name:"Martinez Lara Dayana Michel",code:"G10636"},
     {name:"Marquez Vidana Celeste Elizabeth",code:"G10625"},
     {name:"Navarrete Velazquez Alexis Leonardo",code:"G10626"},
     {name:"Nunez Cereso Adrian Ulisses",code:"G10627"},
@@ -588,13 +592,13 @@ const groups = [
 
 // ── STATE ──────────────────────────────────────────────────────────────────
 let currentGroup   = 0;
-let currentParcial = 3;
+let currentParcial = 1;
 let currentDate    = todayStr();
 let attendance     = {}; // cache local
 let comments       = {}; // cache local
 let parentStudentRef = null;
 let parentGroupRef   = -1;
-let parentParcial    = 3;
+let parentParcial    = 1;
 let unsubscribeAtt   = null;
 let unsubscribeCmt   = null;
 
